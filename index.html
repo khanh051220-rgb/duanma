@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -570,4 +569,2577 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, rgba(255, 252, 238, 0.92), transparent);
             box-shadow: 0 0 18px 4px rgba(255, 206, 110, 0.7);
-           
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .lb-digit {
+            position: relative;
+            z-index: 3;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: clamp(2.1rem, 7.2vw, 4.4rem);
+            color: rgba(255, 250, 240, 0.06);
+            user-select: none;
+        }
+
+        /* Wide Anamorphic Climax Flare */
+        #wideAnamorphicFlare {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 4px;
+            transform: translateY(-50%);
+            background: linear-gradient(90deg, transparent 5%, rgba(255, 245, 212, 0.95) 50%, transparent 95%);
+            box-shadow: 0 0 42px 14px rgba(255, 198, 92, 0.55);
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        /* ACT 4: Short Heartfelt Tribute & Heavy Crimson Red Stamp */
+        #tributeCard {
+            position: relative;
+            width: min(92vw, 660px);
+            padding: clamp(20px, 5vw, 44px);
+            border-radius: 22px;
+            background: linear-gradient(160deg, rgba(16, 17, 26, 0.72) 0%, rgba(7, 8, 13, 0.88) 100%);
+            border: 1px solid rgba(246, 211, 134, 0.24);
+            box-shadow:
+                0 30px 70px -18px rgba(0, 0, 0, 0.92),
+                0 0 48px -16px rgba(246, 211, 134, 0.16);
+            will-change: transform, opacity;
+        }
+
+        .tribute-line {
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+
+        #redStampContainer {
+            position: absolute;
+            right: clamp(-6px, 2vw, 22px);
+            bottom: clamp(-18px, -1vw, 10px);
+            pointer-events: none;
+            will-change: transform, opacity;
+            z-index: 20;
+        }
+
+        /* Fullscreen Dynamic Impact Flash Overlay */
+        #impactFlashOverlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 60;
+            opacity: 0;
+            will-change: opacity;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-[100dvh] relative select-none">
+
+    <!-- =========================================================================
+         REACTIVE FULLSCREEN BACKGROUND CANVAS (Stardust, Beat Pulses, Sparks, Shockwaves)
+         ========================================================================= -->
+    <canvas id="bgCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Impact Flash Overlay (Golden / Crimson / White punch flashes) -->
+    <div id="impactFlashOverlay"></div>
+
+    <!-- =========================================================================
+         TOP HEADER FOR STAGE 1 & STAGE 2
+         ========================================================================= -->
+    <header id="preFilmBar" class="fixed top-4 left-4 right-4 sm:top-6 sm:left-8 sm:right-8 flex items-center justify-between z-40 pointer-events-none transition-opacity duration-500">
+        <div class="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.2em] uppercase text-champagne/85">
+            <span class="w-2 h-2 rounded-full bg-champagne shadow-[0_0_10px_#f6d386]"></span>
+            <span>20 / 11 • English Edit</span>
+        </div>
+
+        <button onclick="toggleMute()"
+            class="pointer-events-auto hud-btn px-3.5 py-1.5 rounded-full text-[11px] font-mono tracking-wider flex items-center gap-2 cursor-pointer"
+            aria-label="Toggle Sound">
+            <span class="sound-dot w-1.5 h-1.5 rounded-full bg-champagne"></span>
+            <span class="sound-text">Sound On</span>
+        </button>
+    </header>
+
+    <!-- =========================================================================
+         STAGE 1: THE ENGLISH DEBUGGER (3 FAST INTERACTIVE MINI-CHALLENGES)
+         ========================================================================= -->
+    <main id="stage1" class="stage-panel relative z-20 w-full max-w-lg px-4 pt-16 pb-8 my-auto">
+        <div class="oxford-panel rounded-2xl p-5 sm:p-8 relative overflow-hidden">
+            <!-- Top Luminous Progress Bar -->
+            <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden mb-6">
+                <div id="s1ProgressBar"
+                     class="h-full bg-gradient-to-r from-champagne via-amberGlow to-ivory transition-all duration-400 ease-out shadow-[0_0_12px_rgba(246,211,134,0.8)]"
+                     style="width: 33.33%;"></div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] font-mono tracking-[0.18em] uppercase text-champagne/85 mb-4">
+                <span id="s1StepLabel">01 / 03 • Grammar Debugger</span>
+                <span id="s1SubtitleTag" class="text-ivory/50 truncate max-w-[46%] text-right">English Teacher</span>
+            </div>
+
+            <!-- MINI-CHALLENGE 1: GRAMMAR DEBUGGER -->
+            <div id="chal1">
+                <h1 class="font-display text-2xl sm:text-3xl font-bold text-ivory mb-1.5 tracking-tight">
+                    Debug the Tribute
+                </h1>
+                <p class="text-xs sm:text-sm text-ivory/65 leading-relaxed mb-5">
+                    Chọn từ đúng ngữ pháp tiếng Anh để hoàn thiện dòng code tri ân Thầy/Cô.
+                </p>
+
+                <!-- Code Editor Card -->
+                <div class="rounded-xl bg-[#04050a] border border-champagne/25 p-4 sm:p-5 mb-5 font-mono text-xs sm:text-sm leading-relaxed shadow-inner">
+                    <div class="flex items-center gap-1.5 mb-2.5 pb-2 border-b border-white/10 text-[11px] text-ivory/40">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500/70"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400/70"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/70"></span>
+                        <span class="ml-2">grammar_check.eng</span>
+                    </div>
+                    <div class="text-ivory/90 break-words leading-7">
+                        <span class="text-amberGlow">const</span> tribute =
+                        <span class="text-ivory">"Thank you for always</span>
+                        <span id="c1BlankToken"
+                              class="inline-flex items-center px-2 py-0.5 mx-1 rounded-md bg-champagne/15 border border-dashed border-champagne text-champagne font-semibold transition-all">
+                            ___
+                        </span>
+                        <span class="text-ivory">our dreams."</span>;
+                    </div>
+                </div>
+
+                <!-- 4 Clickable Tokens -->
+                <div id="c1Options" class="grid grid-cols-2 gap-2.5 mb-4">
+                    <button onclick="answerChal1('inspire', this)" class="choice-btn py-3 px-3 rounded-xl font-mono text-xs sm:text-sm cursor-pointer">inspire</button>
+                    <button onclick="answerChal1('inspiring', this)" class="choice-btn py-3 px-3 rounded-xl font-mono text-xs sm:text-sm cursor-pointer">inspiring</button>
+                    <button onclick="answerChal1('inspired', this)" class="choice-btn py-3 px-3 rounded-xl font-mono text-xs sm:text-sm cursor-pointer">inspired</button>
+                    <button onclick="answerChal1('to inspire', this)" class="choice-btn py-3 px-3 rounded-xl font-mono text-xs sm:text-sm cursor-pointer">to inspire</button>
+                </div>
+
+                <p id="c1Feedback" class="hidden text-xs text-center text-champagne mb-3.5"></p>
+                <button id="c1NextBtn" onclick="switchChal(2)" class="hidden cta-gold w-full py-3 rounded-xl text-sm tracking-wide cursor-pointer">
+                    Thử thách tiếp theo →
+                </button>
+            </div>
+
+            <!-- MINI-CHALLENGE 2: WORD BUILDER (INSPIRE) -->
+            <div id="chal2" class="hidden">
+                <h1 class="font-display text-2xl sm:text-3xl font-bold text-ivory mb-1.5 tracking-tight">
+                    Word Builder
+                </h1>
+                <p class="text-xs sm:text-sm text-ivory/65 mb-2">
+                    Ghép 7 chữ cái để mở khóa từ khóa ý nghĩa nhất dành cho người lái đò:
+                </p>
+                <p class="font-serif italic text-base sm:text-lg text-champagne mb-5">
+                    “To fill someone with the passion and courage to shine.”
+                </p>
+
+                <!-- 7 Slots -->
+                <div id="c2Slots" class="grid grid-cols-7 gap-1.5 sm:gap-2 mb-5"></div>
+
+                <!-- 7 Glowing Scrambled Tiles -->
+                <div id="c2Tiles" class="flex flex-wrap items-center justify-center gap-2 mb-5"></div>
+
+                <!-- Reset & Hint Controls -->
+                <div id="c2Controls" class="flex items-center justify-center gap-3 mb-3.5">
+                    <button onclick="resetChal2()" class="choice-btn px-3.5 py-2 rounded-lg text-xs text-ivory/80 cursor-pointer">
+                        ↺ Xếp lại
+                    </button>
+                    <button onclick="hintChal2()" class="choice-btn px-3.5 py-2 rounded-lg text-xs text-champagne cursor-pointer">
+                        ✦ Gợi ý 1 chữ
+                    </button>
+                </div>
+
+                <p id="c2Feedback" class="hidden text-xs text-center text-champagne mb-3.5"></p>
+                <button id="c2NextBtn" onclick="switchChal(3)" class="hidden cta-gold w-full py-3 rounded-xl text-sm tracking-wide cursor-pointer">
+                    Thử thách cuối →
+                </button>
+            </div>
+
+            <!-- MINI-CHALLENGE 3: LIGHT THE QUOTE -->
+            <div id="chal3" class="hidden">
+                <h1 class="font-display text-2xl sm:text-3xl font-bold text-ivory mb-1.5 tracking-tight">
+                    Light the Quote
+                </h1>
+                <p class="text-xs sm:text-sm text-ivory/65 mb-5">
+                    Chọn từ còn thiếu để thắp sáng câu danh ngôn và khởi chạy trình biên dịch 20/11.
+                </p>
+
+                <div class="rounded-xl bg-[#04050a] border border-champagne/25 px-5 py-6 mb-5 text-center">
+                    <p class="font-serif italic text-lg sm:text-2xl text-ivory leading-relaxed">
+                        “A great teacher is like a candle — it consumes itself to
+                        <span id="c3Blank"
+                              class="inline-block not-italic font-mono text-base sm:text-lg px-2.5 py-0.5 mx-1 rounded-md border border-dashed border-champagne text-champagne transition-all">
+                            ___
+                        </span>
+                        the way for others.”
+                    </p>
+                </div>
+
+                <div id="c3Options" class="grid grid-cols-3 gap-2.5 mb-4">
+                    <button onclick="answerChal3('light', this)" class="choice-btn py-3 px-2 rounded-xl font-display font-semibold text-sm sm:text-base cursor-pointer">light</button>
+                    <button onclick="answerChal3('write', this)" class="choice-btn py-3 px-2 rounded-xl font-display font-semibold text-sm sm:text-base cursor-pointer">write</button>
+                    <button onclick="answerChal3('paint', this)" class="choice-btn py-3 px-2 rounded-xl font-display font-semibold text-sm sm:text-base cursor-pointer">paint</button>
+                </div>
+
+                <p id="c3Feedback" class="hidden text-xs text-center text-champagne mb-3.5"></p>
+                <button id="c3DoneBtn" onclick="enterStage2()" class="hidden cta-gold w-full py-3.5 rounded-xl text-sm tracking-wide cursor-pointer">
+                    Biên dịch Quà Tặng 20/11 →
+                </button>
+            </div>
+        </div>
+
+        <!-- Subtle Secondary Skip-to-Video Button -->
+        <div class="mt-4 text-center">
+            <button onclick="skipStraightToVideo()"
+                class="text-xs font-mono text-ivory/45 hover:text-champagne transition-colors py-2 px-4 rounded-full cursor-pointer">
+                Bỏ qua &amp; Xem Video 20/11 →
+            </button>
+        </div>
+    </main>
+
+    <!-- =========================================================================
+         STAGE 2: AUTOMATED ENGLISH TRIBUTE COMPILER (tribute_20_11.eng)
+         ========================================================================= -->
+    <section id="stage2" class="stage-panel stage-hidden relative z-20 w-full max-w-xl px-4 pt-16 pb-10 my-auto">
+        <div class="oxford-panel rounded-2xl overflow-hidden">
+            <!-- Sleek IDE Titlebar -->
+            <div class="flex items-center justify-between px-4 py-3 bg-[#080912] border-b border-champagne/15">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                    <span class="ml-2 font-mono text-xs text-champagne/90">tribute_20_11.eng</span>
+                </div>
+                <span class="font-mono text-[10px] tracking-widest uppercase text-amberGlow/80">120 BPM • READY</span>
+            </div>
+
+            <!-- Auto-Typing Poetic Code Output -->
+            <div class="p-5 sm:p-7 bg-[#04050a]/90 min-h-[195px] flex flex-col justify-center">
+                <div id="ideCodeLines" class="font-mono text-xs sm:text-sm md:text-[15px] leading-7 sm:leading-8 space-y-1.5"></div>
+            </div>
+
+            <!-- 3D Glowing RUN / ENTER Button + Fast 1.5s Countdown Ring -->
+            <div id="runKeyPanel" class="px-5 py-6 bg-[#070810] border-t border-champagne/15 flex flex-col items-center opacity-0 pointer-events-none translate-y-2 transition-all duration-400">
+                <div class="flex items-center gap-2.5 mb-4 text-[11px] font-mono tracking-[0.16em] uppercase text-champagne/80">
+                    <div class="relative w-7 h-7 flex items-center justify-center">
+                        <svg class="w-7 h-7 -rotate-90" viewBox="0 0 32 32">
+                            <circle cx="16" cy="16" r="13" fill="none" stroke="rgba(246,211,134,0.18)" stroke-width="2.5"></circle>
+                            <circle id="runRingProg" cx="16" cy="16" r="13" fill="none" stroke="#ffbe55" stroke-width="2.5"
+                                    stroke-linecap="round" stroke-dasharray="81.68" stroke-dashoffset="0"></circle>
+                        </svg>
+                        <span id="runRingNum" class="absolute text-[9px] font-bold text-ivory">1.5</span>
+                    </div>
+                    <span>Auto-Launching Edit</span>
+                </div>
+
+                <button id="runEnterBtn" onclick="executeStage2Launch()"
+                    class="run-key-3d px-8 sm:px-10 py-3.5 font-mono font-bold text-sm sm:text-base tracking-[0.18em] flex items-center gap-3 cursor-pointer">
+                    <span>RUN / ENTER</span>
+                    <span class="text-lg leading-none">↵</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         STAGE 3: BEAT-SYNCED 3D MOTION-GRAPHICS VIDEO EDIT (~51 SECONDS, 120 BPM)
+         ========================================================================= -->
+    <section id="stageFilm" class="stage-panel stage-hidden fixed inset-0 z-30 w-full h-[100dvh] overflow-hidden">
+
+        <!-- Top-Right Compact Controls (Pause/Resume, Mute/Unmute, Replay) -->
+        <div id="filmHudTop" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2 transition-opacity duration-700">
+            <button id="hudPauseBtn" onclick="toggleFilmPause()"
+                class="hud-btn px-3 py-1.5 rounded-full text-xs font-mono cursor-pointer"
+                aria-label="Pause or Resume">
+                <span id="hudPauseIcon">⏸</span>
+            </button>
+            <button id="hudMuteBtn" onclick="toggleMute()"
+                class="hud-btn px-3 py-1.5 rounded-full text-xs font-mono cursor-pointer"
+                aria-label="Mute or Unmute">
+                <span id="hudMuteIcon">🔊</span>
+            </button>
+            <button id="hudReplayBtn" onclick="replayFilm()"
+                class="hud-btn px-3 py-1.5 rounded-full text-xs font-mono cursor-pointer"
+                aria-label="Replay Video">
+                ↺
+            </button>
+        </div>
+
+        <!-- Bottom Sleek Timeline Progress Bar + Act Indicator -->
+        <div id="filmHudBottom" class="fixed bottom-0 left-0 right-0 z-50 pointer-events-none transition-opacity duration-700">
+            <div class="flex items-center justify-between px-4 pb-2 text-[10px] font-mono tracking-[0.15em] uppercase text-champagne/65">
+                <span id="hudActLabel">INTRO</span>
+                <span id="hudTimeLabel">00:00 / 00:51</span>
+            </div>
+            <div class="w-full h-[3px] bg-white/10">
+                <div id="hudProgressBar"
+                     class="h-full bg-gradient-to-r from-champagne via-amberGlow to-ivory shadow-[0_0_12px_rgba(255,190,85,0.9)]"
+                     style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- MAIN SCREEN-SHAKE VIEWPORT WRAPPER -->
+        <div id="shakeViewport">
+
+            <!-- ===============================================================
+                 ACT 0 (0.0s – 3.0s): BEAT-DROP KINETIC FLASH CUTS
+                 =============================================================== -->
+            <div id="layerAct0" class="absolute inset-0 flex flex-col items-center justify-center px-4 pointer-events-none opacity-0">
+                <div id="kineticIntroSub" class="font-mono text-[11px] sm:text-xs tracking-[0.35em] uppercase text-champagne/80 mb-3 opacity-0">
+                    20 / 11 • TRIBUTE EDIT
+                </div>
+                <div id="kineticIntroText" class="text-ivory">TO OUR</div>
+            </div>
+
+            <!-- ===============================================================
+                 ACT 1 (3.0s – 18.5s): 7 LETTERS T-E-A-C-H-E-R SHOWCASE,
+                 POWER FLIP-SLAM + SPARKLING BORDERS + MERGE INTO CENTRAL T
+                 =============================================================== -->
+            <div id="layerAct1" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0">
+                <div class="teacher-3d-stage relative">
+                    <!-- Single Horizontal 7-Card Row (Built cleanly via JS) -->
+                    <div id="teacherCardRow" class="teacher-row"></div>
+
+                    <!-- Central Blazing Merged T -->
+                    <div id="blazingCenterT" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0">T</div>
+
+                    <!-- Subtle Twinkling 4-Point Star Sparkles Directly Underneath the Row -->
+                    <canvas id="rowSparkleCanvas"
+                            class="pointer-events-none mt-2"
+                            style="width: min(96vw, 760px); height: 54px;"></canvas>
+
+                    <!-- Active English Word + Meaningful Phrase Caption -->
+                    <div id="rowCaptionPanel" class="mt-1 px-4 text-center flex flex-col items-center justify-center opacity-0">
+                        <div id="capWord" class="font-display font-bold text-lg sm:text-2xl tracking-[0.14em] uppercase text-champagne drop-shadow-[0_0_16px_rgba(246,211,134,0.55)]"></div>
+                        <div id="capPhrase" class="font-serif italic text-base sm:text-xl text-ivory/90 mt-0.5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===============================================================
+                 ACT 2 (18.5s – 29.0s): TRANSLUCENT LUMINOUS THIN-LINE FLOWER
+                 & 6 PETAL GRATITUDE LINES
+                 =============================================================== -->
+            <div id="layerAct2" class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0">
+                <div class="flower-stage-box">
+                    <!-- Luminous Thin-Line Vector Blossom (600x600 coordinate space) -->
+                    <svg id="flowerSvg" viewBox="0 0 600 600" class="w-full h-full overflow-visible" aria-hidden="true">
+                        <defs>
+                            <radialGradient id="flowerAuraGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="rgba(255, 226, 154, 0.36)"/>
+                                <stop offset="45%" stop-color="rgba(246, 211, 134, 0.12)"/>
+                                <stop offset="100%" stop-color="rgba(0, 0, 0, 0)"/>
+                            </radialGradient>
+                            <filter id="flowerLineGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="2.4" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Soft Radiant Heart Aura -->
+                        <circle id="flowerAura" cx="300" cy="300" r="118" fill="url(#flowerAuraGrad)" opacity="0"/>
+
+                        <!-- Delicate Slowly Rotating Outer Filigree Ring -->
+                        <g id="flowerFiligreeGroup" transform="translate(300 300)">
+                            <circle id="flowerOuterRing" r="264" fill="none" stroke="rgba(246, 211, 134, 0.18)"
+                                    stroke-width="0.9" stroke-dasharray="4 10" opacity="0"/>
+                        </g>
+
+                        <!-- 6 Symmetric Petals Populated via JS -->
+                        <g id="flowerPetals" filter="url(#flowerLineGlow)"></g>
+
+                        <!-- Inner Glowing Stamen Ring -->
+                        <circle id="flowerInnerRing" cx="300" cy="300" r="38" fill="none"
+                                stroke="rgba(255, 236, 185, 0.65)" stroke-width="1.2"
+                                stroke-dasharray="239" stroke-dashoffset="239"/>
+                    </svg>
+
+                    <!-- Anchored Glowing Central T -->
+                    <div id="flowerCoreT"
+                         class="absolute inset-0 flex items-center justify-center font-display font-bold pointer-events-none"
+                         style="font-size: clamp(2.1rem, 7vw, 3.6rem); color: #fffaf0; text-shadow: 0 0 24px rgba(255,205,105,0.9); opacity: 0;">
+                        T
+                    </div>
+
+                    <!-- 6 Crisp Petal Gratitude Lines (Zero Overlap on 360px Mobile & Desktop) -->
+                    <div id="pLine0" class="petal-caption" style="left: 50%; top: 19.5%; opacity: 0;">
+                        Thank you for<br>believing in us
+                    </div>
+                    <div id="pLine1" class="petal-caption" style="left: 76.5%; top: 35%; opacity: 0;">
+                        Every word shaped<br>our future
+                    </div>
+                    <div id="pLine2" class="petal-caption" style="left: 76.5%; top: 65%; opacity: 0;">
+                        Your guidance<br>lights our way
+                    </div>
+                    <div id="pLine3" class="petal-caption" style="left: 50%; top: 80.5%; opacity: 0;">
+                        Lessons beyond<br>the textbook
+                    </div>
+                    <div id="pLine4" class="petal-caption" style="left: 23.5%; top: 65%; opacity: 0;">
+                        Endless patience<br>&amp; kindness
+                    </div>
+                    <div id="pLine5" class="petal-caption" style="left: 23.5%; top: 35%; opacity: 0;">
+                        Forever our<br>best mentor
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===============================================================
+                 ACT 3A (29.0s – 31.6s): DOUBLE ATMOSPHERIC FLICKER OF "20/11"
+                 =============================================================== -->
+            <div id="layerAct3A" class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0">
+                <div class="relative flex items-center justify-center">
+                    <div id="flickerFogHalo"
+                         class="absolute w-72 h-36 sm:w-[460px] sm:h-48 rounded-full pointer-events-none"
+                         style="background: radial-gradient(ellipse at center, rgba(246, 211, 134, 0.28) 0%, rgba(255, 190, 85, 0.08) 52%, transparent 78%); opacity: 0;">
+                    </div>
+                    <div id="flicker2011" style="opacity: 0;">20/11</div>
+                </div>
+            </div>
+
+            <!-- ===============================================================
+                 ACT 3B (31.6s – 38.5s): CAMERA ZOOM + TABLE-SLAM LIGHT BOXES
+                 [ 2 ] [ 0 ] [ / ] [ 1 ] [ 1 ] -> WIDE CLIMAX -> BLACKOUT
+                 =============================================================== -->
+            <div id="layerAct3B" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none opacity-0">
+                <div id="wideAnamorphicFlare"></div>
+                <div id="lightboxCamRig">
+                    <div class="light-box" data-lb="0">
+                        <div class="lb-filament"></div>
+                        <div class="lb-flood"></div>
+                        <div class="lb-flare-line"></div>
+                        <span class="lb-digit">2</span>
+                    </div>
+                    <div class="light-box" data-lb="1">
+                        <div class="lb-filament"></div>
+                        <div class="lb-flood"></div>
+                        <div class="lb-flare-line"></div>
+                        <span class="lb-digit">0</span>
+                    </div>
+                    <div class="light-box" data-lb="2">
+                        <div class="lb-filament"></div>
+                        <div class="lb-flood"></div>
+                        <div class="lb-flare-line"></div>
+                        <span class="lb-digit">/</span>
+                    </div>
+                    <div class="light-box" data-lb="3">
+                        <div class="lb-filament"></div>
+                        <div class="lb-flood"></div>
+                        <div class="lb-flare-line"></div>
+                        <span class="lb-digit">1</span>
+                    </div>
+                    <div class="light-box" data-lb="4">
+                        <div class="lb-filament"></div>
+                        <div class="lb-flood"></div>
+                        <div class="lb-flare-line"></div>
+                        <span class="lb-digit">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===============================================================
+                 ACT 4 (39.5s – 51.0s): HEARTFELT ENGLISH TRIBUTE + HEAVY
+                 CRIMSON RED STAMP SLAM + LIGHTS OUT ENDING
+                 =============================================================== -->
+            <div id="layerAct4" class="absolute inset-0 flex items-center justify-center px-4 pointer-events-none opacity-0">
+                <div id="tributeCard" class="text-center">
+                    <div id="tLineTop" class="tribute-line font-mono text-[11px] sm:text-xs tracking-[0.28em] uppercase text-champagne/90 mb-4">
+                        Dear Teacher
+                    </div>
+
+                    <p id="tLine1" class="tribute-line font-serif font-semibold text-ivory leading-snug mb-3"
+                       style="font-size: clamp(1.38rem, 4.7vw, 2.35rem);">
+                        Thank you for teaching us more than English.
+                    </p>
+
+                    <p id="tLine2" class="tribute-line font-serif italic text-ivory/90 leading-snug mb-5"
+                       style="font-size: clamp(1.22rem, 4.1vw, 2.05rem);">
+                        You gave us the courage to speak, dream, and shine.
+                    </p>
+
+                    <div id="tLine3" class="tribute-line font-display font-bold tracking-wide mb-6"
+                         style="font-size: clamp(1.35rem, 4.8vw, 2.3rem); background: linear-gradient(90deg, #fff5d6 0%, #f6d386 48%, #ffbe55 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 18px rgba(255,190,85,0.45));">
+                        Happy Vietnamese Teachers' Day!
+                    </div>
+
+                    <p id="tLineSig" class="tribute-line font-serif italic text-champagne/85 text-sm sm:text-lg pr-0 sm:pr-24">
+                        With endless gratitude — Your Students
+                    </p>
+
+                    <!-- HEAVY CIRCULAR CRIMSON RED STAMP (SVG with Authentic Distressed Ink) -->
+                    <div id="redStampContainer" style="opacity: 0;">
+                        <div id="stampGlowAura"
+                             class="absolute -inset-5 rounded-full pointer-events-none"
+                             style="background: radial-gradient(circle, rgba(217, 30, 54, 0.42) 0%, transparent 70%); opacity: 0;">
+                        </div>
+
+                        <svg viewBox="0 0 230 230" class="w-32 h-32 sm:w-44 sm:h-44 overflow-visible" aria-label="Happy Teachers' Day 20/11 Stamp">
+                            <defs>
+                                <filter id="stampDistress" x="-12%" y="-12%" width="124%" height="124%">
+                                    <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="3" seed="9" result="noise"/>
+                                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.9" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+                                    <feColorMatrix type="matrix" in="noise"
+                                        values="0 0 0 0 0
+                                                0 0 0 0 0
+                                                0 0 0 0 0
+                                                0 0 0 0.26 0.86" result="grain"/>
+                                    <feComposite in="rough" in2="grain" operator="in"/>
+                                </filter>
+                                <!-- Full 360-degree Circular Text Path -->
+                                <path id="redStampRingPath"
+                                      d="M 115, 115 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"/>
+                            </defs>
+
+                            <g filter="url(#stampDistress)">
+                                <!-- Outer Double Crimson Rings -->
+                                <circle cx="115" cy="115" r="103" fill="rgba(217, 30, 54, 0.08)" stroke="#d91e36" stroke-width="4"/>
+                                <circle cx="115" cy="115" r="95" fill="none" stroke="#d91e36" stroke-width="1.35" stroke-opacity="0.92"/>
+
+                                <!-- Inner Framing Rings -->
+                                <circle cx="115" cy="115" r="64" fill="none" stroke="#d91e36" stroke-width="1.8" stroke-opacity="0.95"/>
+                                <circle cx="115" cy="115" r="58.5" fill="none" stroke="#d91e36" stroke-width="0.9" stroke-dasharray="3 2.5" stroke-opacity="0.82"/>
+
+                                <!-- Curved English Text Wrapping Completely Around the Ring -->
+                                <text fill="#d91e36" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="11.6" letter-spacing="2.35">
+                                    <textPath href="#redStampRingPath" startOffset="50%" text-anchor="middle">
+                                        ★ HAPPY TEACHERS' DAY ★ 20 / 11 • HAPPY TEACHERS' DAY •
+                                    </textPath>
+                                </text>
+
+                                <!-- Center Bold 20/11 + THANK YOU -->
+                                <text x="115" y="112" text-anchor="middle" fill="#d91e36"
+                                      font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="35" letter-spacing="1.5">
+                                    20/11
+                                </text>
+                                <line x1="74" y1="122" x2="156" y2="122" stroke="#d91e36" stroke-width="1.3" stroke-opacity="0.85"/>
+                                <text x="115" y="139" text-anchor="middle" fill="#d91e36"
+                                      font-family="'JetBrains Mono', monospace" font-weight="700" font-size="10.2" letter-spacing="2.4">
+                                    THANK YOU
+                                </text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /#shakeViewport -->
+
+        <!-- ENDING BUTTONS (Fade in cleanly after 1.2s of Pitch Darkness) -->
+        <div id="endingControls"
+             class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-wrap items-center justify-center gap-3 w-[92vw] max-w-md opacity-0 pointer-events-none transition-all duration-1000">
+            <button onclick="replayFilm()"
+                class="hud-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono tracking-wide cursor-pointer">
+                ↺ Xem lại Video
+            </button>
+            <button onclick="restartFromStage1()"
+                class="hud-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-mono tracking-wide cursor-pointer">
+                ⌂ Chơi lại từ đầu
+            </button>
+        </div>
+    </section>
+
+    <script>
+        /* =========================================================================
+           EASY PERSONALIZATION CONFIG — EDIT BEFORE HOSTING ON GITHUB PAGES
+           ========================================================================= */
+        const TEACHER_CONFIG = {
+            teacherTitle: "Dear Teacher",
+            subtitle: "Our Beloved English Teacher",
+            signature: "With endless gratitude — Your Students"
+        };
+
+        /* =========================================================================
+           1. WEB AUDIO 120 BPM SYNTH-POP / FUTURE-BASS ENGINE & IMPACT SFX
+              (100% Procedural — Zero External Audio Files, Frame-Synced to Video)
+           ========================================================================= */
+        let audioCtx = null;
+        let masterGain = null;
+        let noiseBuffer = null;
+        let isMuted = false;
+
+        function ensureAudio() {
+            try {
+                if (!audioCtx) {
+                    const AudioCtor = window.AudioContext || window.webkitAudioContext;
+                    if (!AudioCtor) return null;
+                    audioCtx = new AudioCtor();
+                    masterGain = audioCtx.createGain();
+                    masterGain.gain.setValueAtTime(isMuted ? 0 : 0.82, audioCtx.currentTime);
+                    masterGain.connect(audioCtx.destination);
+                    createNoiseBuffer();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume().catch(() => {});
+                }
+                return audioCtx;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function createNoiseBuffer() {
+            if (!audioCtx) return;
+            const len = audioCtx.sampleRate * 1.2;
+            const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+            const data = buf.getChannelData(0);
+            for (let i = 0; i < len; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            noiseBuffer = buf;
+        }
+
+        function syncMuteUI() {
+            document.querySelectorAll('.sound-text').forEach(el => {
+                el.textContent = isMuted ? 'Muted' : 'Sound On';
+            });
+            document.querySelectorAll('.sound-dot').forEach(el => {
+                el.style.opacity = isMuted ? '0.25' : '1';
+            });
+            const icon = document.getElementById('hudMuteIcon');
+            if (icon) icon.textContent = isMuted ? '🔇' : '🔊';
+        }
+
+        function toggleMute() {
+            isMuted = !isMuted;
+            const ctx = ensureAudio();
+            if (ctx && masterGain) {
+                masterGain.gain.setTargetAtTime(isMuted ? 0.0001 : 0.82, ctx.currentTime, 0.04);
+            }
+            syncMuteUI();
+        }
+
+        // --- Drum & Synth Building Blocks (120 BPM Future-Bass / Synth-Pop) ---
+        function playKick(vol = 0.38) {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(148, t);
+            osc.frequency.exponentialRampToValueAtTime(42, t + 0.13);
+
+            g.gain.setValueAtTime(vol, t);
+            g.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+
+            osc.connect(g);
+            g.connect(masterGain);
+            osc.start(t);
+            osc.stop(t + 0.24);
+        }
+
+        function playSnareClap(vol = 0.22) {
+            if (isMuted || !noiseBuffer) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            // Crisp clap noise burst
+            const src = ctx.createBufferSource();
+            src.buffer = noiseBuffer;
+            const bp = ctx.createBiquadFilter();
+            bp.type = 'bandpass';
+            bp.frequency.setValueAtTime(1800, t);
+            bp.Q.setValueAtTime(1.1, t);
+
+            const g = ctx.createGain();
+            g.gain.setValueAtTime(vol, t);
+            g.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
+
+            src.connect(bp);
+            bp.connect(g);
+            g.connect(masterGain);
+            src.start(t);
+            src.stop(t + 0.15);
+
+            // Body snap
+            const osc = ctx.createOscillator();
+            const og = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(210, t);
+            osc.frequency.exponentialRampToValueAtTime(95, t + 0.06);
+            og.gain.setValueAtTime(vol * 0.55, t);
+            og.gain.exponentialRampToValueAtTime(0.001, t + 0.075);
+            osc.connect(og);
+            og.connect(masterGain);
+            osc.start(t);
+            osc.stop(t + 0.08);
+        }
+
+        function playHiHat(open = false, vol = 0.075) {
+            if (isMuted || !noiseBuffer) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            const src = ctx.createBufferSource();
+            src.buffer = noiseBuffer;
+            const hp = ctx.createBiquadFilter();
+            hp.type = 'highpass';
+            hp.frequency.setValueAtTime(7200, t);
+
+            const dur = open ? 0.14 : 0.042;
+            const g = ctx.createGain();
+            g.gain.setValueAtTime(vol, t);
+            g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+
+            src.connect(hp);
+            hp.connect(g);
+            g.connect(masterGain);
+            src.start(t);
+            src.stop(t + dur + 0.01);
+        }
+
+        function playBass(freq, dur = 0.22, vol = 0.17) {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            const osc = ctx.createOscillator();
+            const lp = ctx.createBiquadFilter();
+            const g = ctx.createGain();
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, t);
+
+            lp.type = 'lowpass';
+            lp.frequency.setValueAtTime(640, t);
+            lp.frequency.exponentialRampToValueAtTime(190, t + dur);
+
+            g.gain.setValueAtTime(0.001, t);
+            g.gain.linearRampToValueAtTime(vol, t + 0.012);
+            g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+
+            osc.connect(lp);
+            lp.connect(g);
+            g.connect(masterGain);
+            osc.start(t);
+            osc.stop(t + dur + 0.02);
+        }
+
+        function playPluckArp(freq, dur = 0.26, vol = 0.085) {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            const osc = ctx.createOscillator();
+            const lp = ctx.createBiquadFilter();
+            const g = ctx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, t);
+
+            lp.type = 'lowpass';
+            lp.frequency.setValueAtTime(3400, t);
+            lp.frequency.exponentialRampToValueAtTime(780, t + dur);
+
+            g.gain.setValueAtTime(0.001, t);
+            g.gain.linearRampToValueAtTime(vol, t + 0.008);
+            g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+
+            osc.connect(lp);
+            lp.connect(g);
+            g.connect(masterGain);
+            osc.start(t);
+            osc.stop(t + dur + 0.02);
+        }
+
+        function playFutureChord(freqs, dur = 0.9, vol = 0.055) {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            freqs.forEach((f, idx) => {
+                const osc = ctx.createOscillator();
+                const lp = ctx.createBiquadFilter();
+                const g = ctx.createGain();
+
+                osc.type = idx % 2 === 0 ? 'sawtooth' : 'triangle';
+                osc.frequency.setValueAtTime(f, t);
+                osc.detune.setValueAtTime((idx - 1.5) * 6, t);
+
+                lp.type = 'lowpass';
+                lp.frequency.setValueAtTime(2200, t);
+                lp.frequency.exponentialRampToValueAtTime(620, t + dur);
+
+                g.gain.setValueAtTime(0.001, t);
+                g.gain.linearRampToValueAtTime(vol, t + 0.03);
+                g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+
+                osc.connect(lp);
+                lp.connect(g);
+                g.connect(masterGain);
+                osc.start(t);
+                osc.stop(t + dur + 0.04);
+            });
+        }
+
+        // --- Dedicated Tactile & Heavy Impact SFX ---
+        function sfxClick(pitch = 680) {
+            if (isMuted) return;
+            playPluckArp(pitch, 0.08, 0.08);
+        }
+
+        function sfxSuccess() {
+            if (isMuted) return;
+            playPluckArp(523.25, 0.22, 0.1);
+            setTimeout(() => playPluckArp(659.25, 0.24, 0.1), 70);
+            setTimeout(() => playPluckArp(783.99, 0.34, 0.11), 140);
+        }
+
+        function sfxError() {
+            if (isMuted) return;
+            playBass(150, 0.18, 0.14);
+        }
+
+        function sfxTypeTick() {
+            if (isMuted) return;
+            playPluckArp(900 + Math.random() * 260, 0.035, 0.045);
+        }
+
+        // Table-Slam Heavy Bass Thump (low sine drop + punchy wooden transient)
+        function sfxTableSlam(power = 1.0) {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            // Deep sub-bass slam
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(140 * Math.min(1.15, power), t);
+            osc.frequency.exponentialRampToValueAtTime(30, t + 0.28);
+
+            g.gain.setValueAtTime(Math.min(0.68, 0.48 * power), t);
+            g.gain.exponentialRampToValueAtTime(0.001, t + 0.36);
+
+            osc.connect(g);
+            g.connect(masterGain);
+            osc.start(t);
+            osc.stop(t + 0.38);
+
+            // Punchy table-slap transient
+            if (noiseBuffer) {
+                const src = ctx.createBufferSource();
+                src.buffer = noiseBuffer;
+                const lp = ctx.createBiquadFilter();
+                lp.type = 'lowpass';
+                lp.frequency.setValueAtTime(1250, t);
+                lp.frequency.exponentialRampToValueAtTime(220, t + 0.09);
+
+                const ng = ctx.createGain();
+                ng.gain.setValueAtTime(Math.min(0.45, 0.32 * power), t);
+                ng.gain.exponentialRampToValueAtTime(0.001, t + 0.11);
+
+                src.connect(lp);
+                lp.connect(ng);
+                ng.connect(masterGain);
+                src.start(t);
+                src.stop(t + 0.12);
+            }
+        }
+
+        // Crisp Card Flip-Slam Whoosh
+        function sfxCardSlam(pitchMul = 1.0) {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            if (noiseBuffer) {
+                const src = ctx.createBufferSource();
+                src.buffer = noiseBuffer;
+                const bp = ctx.createBiquadFilter();
+                bp.type = 'bandpass';
+                bp.frequency.setValueAtTime(600, t);
+                bp.frequency.exponentialRampToValueAtTime(2600, t + 0.08);
+                const g = ctx.createGain();
+                g.gain.setValueAtTime(0.16, t);
+                g.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+                src.connect(bp);
+                bp.connect(g);
+                g.connect(masterGain);
+                src.start(t);
+                src.stop(t + 0.11);
+            }
+
+            playPluckArp(520 * pitchMul, 0.16, 0.1);
+            playKick(0.2);
+        }
+
+        // Electric Neon Flicker Buzz
+        function sfxElectricFlicker(intensity = 0.8) {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(118, t);
+
+            const bp = ctx.createBiquadFilter();
+            bp.type = 'bandpass';
+            bp.frequency.setValueAtTime(1400, t);
+            bp.Q.setValueAtTime(2.5, t);
+
+            g.gain.setValueAtTime(0.09 * intensity, t);
+            g.gain.setValueAtTime(0.02 * intensity, t + 0.06);
+            g.gain.setValueAtTime(0.12 * intensity, t + 0.11);
+            g.gain.exponentialRampToValueAtTime(0.0008, t + 0.28);
+
+            osc.connect(bp);
+            bp.connect(g);
+            g.connect(masterGain);
+            osc.start(t);
+            osc.stop(t + 0.3);
+        }
+
+        // Power-Down Switch Cut
+        function sfxPowerDown() {
+            if (isMuted) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(420, t);
+            osc.frequency.exponentialRampToValueAtTime(45, t + 0.22);
+
+            g.gain.setValueAtTime(0.22, t);
+            g.gain.exponentialRampToValueAtTime(0.001, t + 0.24);
+
+            osc.connect(g);
+            g.connect(masterGain);
+            osc.start(t);
+            osc.stop(t + 0.26);
+        }
+
+        // Smooth Synth Riser Sweep
+        function sfxRiser(dur = 0.65) {
+            if (isMuted || !noiseBuffer) return;
+            const ctx = ensureAudio();
+            if (!ctx || !masterGain) return;
+            const t = ctx.currentTime;
+
+            const src = ctx.createBufferSource();
+            src.buffer = noiseBuffer;
+            const bp = ctx.createBiquadFilter();
+            bp.type = 'bandpass';
+            bp.frequency.setValueAtTime(320, t);
+            bp.frequency.exponentialRampToValueAtTime(4800, t + dur);
+            bp.Q.setValueAtTime(2.2, t);
+
+            const g = ctx.createGain();
+            g.gain.setValueAtTime(0.001, t);
+            g.gain.linearRampToValueAtTime(0.18, t + dur * 0.85);
+            g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+
+            src.connect(bp);
+            bp.connect(g);
+            g.connect(masterGain);
+            src.start(t);
+            src.stop(t + dur + 0.02);
+        }
+
+        // --- 120 BPM Sequencer Driven Directly by Film Timeline (16th note = 0.125s) ---
+        const PROGRESSION = [
+            // Fmaj7 -> G6 -> Em7 -> Am7
+            { bass: 87.31,  chord: [349.23, 440.00, 523.25, 659.25], arp: [349.23, 440.00, 523.25, 659.25, 880.00, 659.25, 523.25, 440.00] },
+            { bass: 98.00,  chord: [392.00, 493.88, 587.33, 659.25], arp: [392.00, 493.88, 587.33, 659.25, 783.99, 659.25, 587.33, 493.88] },
+            { bass: 82.41,  chord: [329.63, 392.00, 493.88, 587.33], arp: [329.63, 392.00, 493.88, 587.33, 783.99, 587.33, 493.88, 392.00] },
+            { bass: 110.00, chord: [440.00, 523.25, 659.25, 783.99], arp: [440.00, 523.25, 659.25, 783.99, 1046.5, 783.99, 659.25, 523.25] }
+        ];
+
+        function triggerMusicStep(step) {
+            const t = step * 0.125;
+            const bar = Math.floor(step / 16) % 4;
+            const s = step % 16; // 0..15 within bar
+            const cur = PROGRESSION[bar];
+
+            // Visual beat pulse on quarter notes (when not blacked out)
+            if (s % 4 === 0 && !isBlackoutTime(t)) {
+                bgBeatPulse = 1.0;
+            }
+
+            // ACT 0 (0.0s - 3.0s): Punchy Intro Stabs
+            if (t < 3.0) {
+                if (s % 4 === 0) playKick(0.34);
+                if (s === 4 || s === 12) playSnareClap(0.2);
+                if (s % 2 === 0) playHiHat(s % 4 === 2, 0.06);
+                if (s % 6 === 0) playFutureChord(cur.chord, 0.35, 0.055);
+                if (step === 18) sfxRiser(0.7);
+                return;
+            }
+
+            // ACT 1A & 1B & 1C (3.0s - 18.5s): Full Upbeat High-Energy 120 BPM Groove
+            if (t < 18.5) {
+                const highPeak = t >= 11.5;
+                if (s === 0 || s === 4 || s === 8 || s === 12 || (highPeak && s === 14)) playKick(highPeak ? 0.4 : 0.34);
+                if (s === 4 || s === 12) playSnareClap(highPeak ? 0.24 : 0.19);
+                if (highPeak || s % 2 === 0) playHiHat(s % 4 === 2, highPeak ? 0.075 : 0.055);
+                if (s === 0 || s === 3 || s === 6 || s === 10 || s === 14) playBass(cur.bass, 0.2, highPeak ? 0.18 : 0.14);
+                if (s % 2 === 0) playPluckArp(cur.arp[(s / 2) % 8], 0.24, highPeak ? 0.09 : 0.075);
+                if (s === 0 || s === 6) playFutureChord(cur.chord, 0.55, highPeak ? 0.058 : 0.042);
+                // Rapid snare build right before the 15.8s merge surge
+                if (t >= 14.8 && t < 15.8 && s % 2 === 0) playSnareClap(0.16);
+                return;
+            }
+
+            // ACT 2 (18.5s - 28.9s): Alive, Uplifting Emotional Future-Bass Groove
+            if (t < 28.9) {
+                if (s === 0 || s === 6 || s === 10) playKick(0.28);
+                if (s === 4 || s === 12) playSnareClap(0.15);
+                if (s % 2 === 0) playHiHat(s === 2 || s === 10, 0.048);
+                if (s === 0 || s === 8) playBass(cur.bass, 0.36, 0.13);
+                if (s === 0) playFutureChord(cur.chord, 1.35, 0.06);
+                if (s % 2 === 0) playPluckArp(cur.arp[(s / 2) % 8] * (s >= 8 ? 2 : 1), 0.3, 0.065);
+                if (step === 220) sfxRiser(1.3); // 27.5s riser into blackout
+                return;
+            }
+
+            // ACT 3A (29.0s - 31.6s): Dramatic Darkness & Subtle Heartbeat Pulse
+            if (t < 31.6) {
+                if (s % 8 === 0) playKick(0.14);
+                return;
+            }
+
+            // ACT 3B (31.6s - 38.2s): Tense Rhythmic Pulse Under Light-Box Slams
+            if (t < 38.2) {
+                if (s % 4 === 0) playKick(0.26);
+                if (s % 2 === 0) playHiHat(false, 0.055);
+                if (s === 0 || s === 8) playBass(cur.bass, 0.28, 0.16);
+                return;
+            }
+
+            // 38.2s - 39.5s: Pure Blackout Silence
+            if (t < 39.5) return;
+
+            // ACT 4 (39.5s - 48.2s): Triumphant Emotional Anthem + Big Climax Resolution
+            if (t < 48.2) {
+                if (t < 44.8) {
+                    if (s === 0 || s === 4 || s === 8 || s === 12) playKick(0.32);
+                    if (s === 4 || s === 12) playSnareClap(0.19);
+                    if (s % 2 === 0) playHiHat(s % 4 === 2, 0.06);
+                    if (s === 0 || s === 6 || s === 10) playBass(cur.bass, 0.28, 0.15);
+                    if (s === 0) playFutureChord(cur.chord, 1.2, 0.065);
+                    if (s % 2 === 0) playPluckArp(cur.arp[(s / 2) % 8], 0.28, 0.075);
+                }
+                if (step === 352) sfxRiser(0.75); // 44.0s riser into 44.8s stamp slam!
+                if (step === 360) { // 45.0s huge triumphant resolution chord on stamp impact
+                    playFutureChord([261.63, 329.63, 392.00, 523.25, 587.33], 2.8, 0.078);
+                    playBass(130.81, 2.2, 0.2);
+                }
+            }
+        }
+
+        /* =========================================================================
+           2. REACTIVE FULLSCREEN CANVAS (Stardust, Beat Pulses, Sparks, Shockwaves)
+           ========================================================================= */
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let bgW = window.innerWidth;
+        let bgH = window.innerHeight;
+        let bgDpr = 1;
+        let bgStars = [];
+        let bgSparks = [];
+        let bgShockwaves = [];
+        let bgBeatPulse = 0;
+
+        // Dynamic Screen Shake & Flash State
+        let shakeTimeLeft = 0;
+        let shakeDuration = 0.001;
+        let shakeIntensity = 0;
+        let flashTimeLeft = 0;
+        let flashDuration = 0.001;
+        let flashPeak = 0;
+        let flashColor = '#fff3cf';
+
+        function resizeBgCanvas() {
+            bgDpr = Math.min(window.devicePixelRatio || 1, 2);
+            bgW = window.innerWidth;
+            bgH = window.innerHeight;
+            bgCanvas.width = Math.floor(bgW * bgDpr);
+            bgCanvas.height = Math.floor(bgH * bgDpr);
+            bgCtx.setTransform(bgDpr, 0, 0, bgDpr, 0, 0);
+
+            if (bgStars.length === 0) {
+                for (let i = 0; i < 65; i++) {
+                    bgStars.push({
+                        x: Math.random() * bgW,
+                        y: Math.random() * bgH,
+                        r: 0.7 + Math.random() * 1.9,
+                        vx: (Math.random() - 0.5) * 8,
+                        vy: -4 - Math.random() * 10,
+                        phase: Math.random() * Math.PI * 2,
+                        gold: Math.random() > 0.35
+                    });
+                }
+            }
+        }
+
+        function spawnSparks(x, y, count = 24, palette = 'gold', speedMul = 1.0) {
+            const colors = palette === 'crimson'
+                ? ['#d91e36', '#ff4d64', '#f6d386', '#fffaf0']
+                : ['#fffaf0', '#ffe39c', '#f6d386', '#ffbe55'];
+            for (let i = 0; i < count; i++) {
+                const ang = Math.random() * Math.PI * 2;
+                const spd = (90 + Math.random() * 340) * speedMul;
+                bgSparks.push({
+                    x, y,
+                    vx: Math.cos(ang) * spd,
+                    vy: Math.sin(ang) * spd,
+                    life: 0.45 + Math.random() * 0.65,
+                    maxLife: 1.1,
+                    size: 1.5 + Math.random() * 3.0,
+                    color: colors[i % colors.length],
+                    star: Math.random() > 0.55
+                });
+            }
+        }
+
+        function spawnShockwave(x, y, color = 'rgba(246, 211, 134, 0.9)', maxR = 320, lineWidth = 4) {
+            bgShockwaves.push({
+                x, y,
+                r: 12,
+                maxR,
+                color,
+                lineWidth,
+                life: 0.55,
+                maxLife: 0.55
+            });
+        }
+
+        function triggerShake(intensity = 10, duration = 0.22) {
+            shakeIntensity = Math.max(shakeIntensity, intensity);
+            shakeDuration = Math.max(shakeDuration, duration);
+            shakeTimeLeft = Math.max(shakeTimeLeft, duration);
+        }
+
+        function triggerFlash(color = 'rgba(255, 232, 168, 1)', peak = 0.32, duration = 0.24) {
+            flashColor = color;
+            flashPeak = peak;
+            flashDuration = duration;
+            flashTimeLeft = duration;
+        }
+
+        function isBlackoutTime(t) {
+            if (!filmRunning) return false;
+            return (t >= 29.0 && t < 31.6) || (t >= 38.2 && t < 39.5) || t >= 48.55;
+        }
+
+        function drawMiniStar(ctx, x, y, r, color, alpha) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            const inn = r * 0.25;
+            for (let i = 0; i < 8; i++) {
+                const rad = i % 2 === 0 ? r : inn;
+                const a = (Math.PI / 4) * i;
+                if (i === 0) ctx.moveTo(Math.cos(a) * rad, Math.sin(a) * rad);
+                else ctx.lineTo(Math.cos(a) * rad, Math.sin(a) * rad);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        let globalAnimLast = performance.now();
+        function runGlobalVisualLoop(now) {
+            const dt = Math.min(0.06, (now - globalAnimLast) / 1000);
+            globalAnimLast = now;
+
+            // Advance Stage 3 Film Timeline if running & unpaused
+            if (filmRunning && !filmPaused && !filmEnded) {
+                filmTime += dt;
+                renderFilmFrame(filmTime);
+            }
+
+            // Update Background Canvas
+            const blackout = isBlackoutTime(filmTime);
+            bgCtx.clearRect(0, 0, bgW, bgH);
+
+            if (blackout) {
+                bgCtx.fillStyle = '#000000';
+                bgCtx.fillRect(0, 0, bgW, bgH);
+            } else {
+                // Deep Obsidian Atmosphere + Subtle Beat-Reactive Golden Ambient Glow
+                bgCtx.fillStyle = '#05060b';
+                bgCtx.fillRect(0, 0, bgW, bgH);
+
+                bgBeatPulse = Math.max(0, bgBeatPulse - dt * 3.4);
+                const pulseRad = Math.max(bgW, bgH) * (0.55 + bgBeatPulse * 0.14);
+                const grad = bgCtx.createRadialGradient(bgW * 0.5, bgH * 0.46, 10, bgW * 0.5, bgH * 0.46, pulseRad);
+                grad.addColorStop(0, `rgba(246, 211, 134, ${(0.075 + bgBeatPulse * 0.075).toFixed(3)})`);
+                grad.addColorStop(0.45, `rgba(28, 30, 52, ${(0.18 + bgBeatPulse * 0.05).toFixed(3)})`);
+                grad.addColorStop(1, 'rgba(5, 6, 11, 0)');
+                bgCtx.fillStyle = grad;
+                bgCtx.fillRect(0, 0, bgW, bgH);
+
+                // Subtle Drifting Stardust
+                const tSec = now * 0.001;
+                for (let i = 0; i < bgStars.length; i++) {
+                    const s = bgStars[i];
+                    s.x += s.vx * dt;
+                    s.y += s.vy * dt;
+                    if (s.y < -8) { s.y = bgH + 8; s.x = Math.random() * bgW; }
+                    if (s.x < -8) s.x = bgW + 8;
+                    if (s.x > bgW + 8) s.x = -8;
+                    const tw = 0.25 + 0.75 * (0.5 + 0.5 * Math.sin(tSec * 2.4 + s.phase));
+                    const a = tw * (0.45 + bgBeatPulse * 0.35);
+                    if (s.gold) {
+                        drawMiniStar(bgCtx, s.x, s.y, s.r * (1.25 + bgBeatPulse * 0.35), '#f6d386', a);
+                    } else {
+                        bgCtx.fillStyle = `rgba(255, 250, 240, ${a.toFixed(3)})`;
+                        bgCtx.beginPath();
+                        bgCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                        bgCtx.fill();
+                    }
+                }
+            }
+
+            // Render Expanding Shockwaves (Even over transitions for crisp punch)
+            for (let i = bgShockwaves.length - 1; i >= 0; i--) {
+                const sw = bgShockwaves[i];
+                sw.life -= dt;
+                if (sw.life <= 0) {
+                    bgShockwaves.splice(i, 1);
+                    continue;
+                }
+                const p = 1 - sw.life / sw.maxLife;
+                const eased = 1 - Math.pow(1 - p, 3);
+                const rad = 14 + (sw.maxR - 14) * eased;
+                bgCtx.save();
+                bgCtx.globalAlpha = (1 - p) * 0.85;
+                bgCtx.strokeStyle = sw.color;
+                bgCtx.lineWidth = Math.max(0.8, sw.lineWidth * (1 - p));
+                bgCtx.beginPath();
+                bgCtx.arc(sw.x, sw.y, rad, 0, Math.PI * 2);
+                bgCtx.stroke();
+                bgCtx.restore();
+            }
+
+            // Render Reactive Sparks & Embers
+            for (let i = bgSparks.length - 1; i >= 0; i--) {
+                const p = bgSparks[i];
+                p.life -= dt;
+                if (p.life <= 0) {
+                    bgSparks.splice(i, 1);
+                    continue;
+                }
+                p.vx *= Math.pow(0.08, dt);
+                p.vy *= Math.pow(0.08, dt);
+                p.vy += 40 * dt;
+                p.x += p.vx * dt;
+                p.y += p.vy * dt;
+                const alpha = Math.min(1, p.life / 0.45);
+                if (p.star) {
+                    drawMiniStar(bgCtx, p.x, p.y, p.size * 1.9, p.color, alpha);
+                } else {
+                    bgCtx.save();
+                    bgCtx.globalAlpha = alpha;
+                    bgCtx.fillStyle = p.color;
+                    bgCtx.beginPath();
+                    bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    bgCtx.fill();
+                    bgCtx.restore();
+                }
+            }
+
+            // Apply Dynamic Screen Shake to Viewport (Stage 3)
+            const vp = document.getElementById('shakeViewport');
+            if (shakeTimeLeft > 0) {
+                shakeTimeLeft = Math.max(0, shakeTimeLeft - dt);
+                const decay = shakeTimeLeft / shakeDuration;
+                const mag = shakeIntensity * decay * decay;
+                const sx = (Math.random() * 2 - 1) * mag;
+                const sy = (Math.random() * 2 - 1) * mag;
+                const rot = (Math.random() * 2 - 1) * (mag * 0.085);
+                if (vp) vp.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg)`;
+                if (shakeTimeLeft === 0) {
+                    shakeIntensity = 0;
+                    if (vp) vp.style.transform = 'translate3d(0, 0, 0)';
+                }
+            }
+
+            // Apply Fullscreen Flash Pulse Overlay
+            const flashEl = document.getElementById('impactFlashOverlay');
+            if (flashTimeLeft > 0) {
+                flashTimeLeft = Math.max(0, flashTimeLeft - dt);
+                const frac = flashTimeLeft / flashDuration;
+                flashEl.style.background = flashColor;
+                flashEl.style.opacity = (flashPeak * frac * frac).toFixed(3);
+            } else if (flashEl.style.opacity !== '0') {
+                flashEl.style.opacity = '0';
+            }
+
+            requestAnimationFrame(runGlobalVisualLoop);
+        }
+
+        /* =========================================================================
+           3. STAGE 1 — THE ENGLISH DEBUGGER (3 QUICK MINI-CHALLENGES)
+           ========================================================================= */
+        let c1Solved = false;
+        let c2Solved = false;
+        let c3Solved = false;
+
+        const C2_TARGET = 'INSPIRE';
+        const C2_POOL = ['R', 'I', 'P', 'E', 'S', 'I', 'N'];
+        let c2Built = [];
+        let c2Used = [];
+
+        function answerChal1(choice, btn) {
+            if (c1Solved) return;
+            ensureAudio();
+            const fb = document.getElementById('c1Feedback');
+            const blank = document.getElementById('c1BlankToken');
+
+            if (choice === 'inspiring') {
+                c1Solved = true;
+                btn.classList.add('choice-correct');
+                blank.textContent = 'inspiring';
+                blank.className = 'inline-flex items-center px-2 py-0.5 mx-1 rounded-md bg-champagne/25 border border-champagne text-ivory font-semibold shadow-[0_0_16px_rgba(246,211,134,0.45)]';
+                fb.textContent = '✓ Chính xác! Sau giới từ "for" là danh động từ (V-ing): inspiring.';
+                fb.classList.remove('hidden');
+                document.getElementById('c1NextBtn').classList.remove('hidden');
+                sfxSuccess();
+                spawnSparks(bgW * 0.5, bgH * 0.45, 22, 'gold', 0.8);
+            } else {
+                btn.classList.remove('choice-wrong');
+                void btn.offsetWidth;
+                btn.classList.add('choice-wrong');
+                fb.textContent = 'Chưa chuẩn rồi! Gợi ý: "Thank you for + V-ing" nhé.';
+                fb.classList.remove('hidden');
+                sfxError();
+            }
+        }
+
+        function renderChal2() {
+            const slotsEl = document.getElementById('c2Slots');
+            const tilesEl = document.getElementById('c2Tiles');
+            slotsEl.innerHTML = '';
+            tilesEl.innerHTML = '';
+
+            for (let i = 0; i < C2_TARGET.length; i++) {
+                const slot = document.createElement('div');
+                const ch = c2Built[i] || '';
+                slot.className = 'h-11 sm:h-12 rounded-xl border flex items-center justify-center font-mono font-bold text-base sm:text-lg transition-all ' +
+                    (ch ? 'slot-active' : 'bg-[#04050a] border-champagne/20 text-ivory/25');
+                slot.textContent = ch || '·';
+                slotsEl.appendChild(slot);
+            }
+
+            C2_POOL.forEach((ch, idx) => {
+                const used = c2Used.includes(idx);
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn w-10 h-11 sm:w-11 sm:h-12 rounded-xl font-mono font-bold text-base cursor-pointer ' + (used ? 'tile-used' : '');
+                btn.textContent = ch;
+                btn.disabled = used || c2Solved;
+                btn.onclick = () => tapChal2Tile(ch, idx, btn);
+                tilesEl.appendChild(btn);
+            });
+        }
+
+        function tapChal2Tile(ch, idx, btn) {
+            if (c2Solved) return;
+            ensureAudio();
+            const pos = c2Built.length;
+            const fb = document.getElementById('c2Feedback');
+
+            if (ch === C2_TARGET[pos]) {
+                fb.classList.add('hidden');
+                c2Built.push(ch);
+                c2Used.push(idx);
+                const scaleNotes = [440, 493.88, 523.25, 587.33, 659.25, 783.99, 880];
+                sfxClick(scaleNotes[pos]);
+                renderChal2();
+
+                if (c2Built.length === C2_TARGET.length) {
+                    c2Solved = true;
+                    document.getElementById('c2Controls').classList.add('hidden');
+                    fb.textContent = '✓ Tuyệt vời! INSPIRE — Người truyền cảm hứng bất tận.';
+                    fb.classList.remove('hidden');
+                    document.getElementById('c2NextBtn').classList.remove('hidden');
+                    sfxSuccess();
+                    spawnSparks(bgW * 0.5, bgH * 0.45, 26, 'gold', 0.9);
+                }
+            } else {
+                btn.classList.remove('choice-wrong');
+                void btn.offsetWidth;
+                btn.classList.add('choice-wrong');
+                sfxError();
+            }
+        }
+
+        function resetChal2() {
+            if (c2Solved) return;
+            sfxClick(420);
+            c2Built = [];
+            c2Used = [];
+            document.getElementById('c2Feedback').classList.add('hidden');
+            renderChal2();
+        }
+
+        function hintChal2() {
+            if (c2Solved) return;
+            const needed = C2_TARGET[c2Built.length];
+            const idx = C2_POOL.findIndex((ch, i) => ch === needed && !c2Used.includes(i));
+            if (idx !== -1) {
+                const btns = document.querySelectorAll('#c2Tiles button');
+                tapChal2Tile(needed, idx, btns[idx]);
+            }
+        }
+
+        function answerChal3(choice, btn) {
+            if (c3Solved) return;
+            ensureAudio();
+            const fb = document.getElementById('c3Feedback');
+            const blank = document.getElementById('c3Blank');
+
+            if (choice === 'light') {
+                c3Solved = true;
+                btn.classList.add('choice-correct');
+                blank.textContent = 'light';
+                blank.className = 'inline-block not-italic font-display font-bold text-xl sm:text-2xl px-2 mx-1 text-champagne border-b-2 border-champagne drop-shadow-[0_0_12px_rgba(246,211,134,0.85)]';
+                fb.textContent = '✓ “...to light the way for others.” — Đã sẵn sàng biên dịch!';
+                fb.classList.remove('hidden');
+                document.getElementById('c3DoneBtn').classList.remove('hidden');
+                sfxSuccess();
+                spawnSparks(bgW * 0.5, bgH * 0.45, 32, 'gold', 1.0);
+            } else {
+                btn.classList.remove('choice-wrong');
+                void btn.offsetWidth;
+                btn.classList.add('choice-wrong');
+                fb.textContent = 'Gợi ý: Ngọn nến tỏa sáng để "thắp sáng" (light) con đường cho người khác.';
+                fb.classList.remove('hidden');
+                sfxError();
+            }
+        }
+
+        function switchChal(step) {
+            sfxClick(620);
+            [1, 2, 3].forEach(n => {
+                document.getElementById(`chal${n}`).classList.toggle('hidden', n !== step);
+            });
+            const labels = [
+                '01 / 03 • Grammar Debugger',
+                '02 / 03 • Word Builder',
+                '03 / 03 • Light the Quote'
+            ];
+            document.getElementById('s1StepLabel').textContent = labels[step - 1];
+            document.getElementById('s1ProgressBar').style.width = `${(step / 3) * 100}%`;
+            if (step === 2) renderChal2();
+        }
+
+        function resetStage1State() {
+            c1Solved = false;
+            c2Solved = false;
+            c3Solved = false;
+            c2Built = [];
+            c2Used = [];
+
+            // Reset Chal 1
+            document.getElementById('c1BlankToken').textContent = '___';
+            document.getElementById('c1BlankToken').className = 'inline-flex items-center px-2 py-0.5 mx-1 rounded-md bg-champagne/15 border border-dashed border-champagne text-champagne font-semibold transition-all';
+            document.querySelectorAll('#c1Options button').forEach(b => b.classList.remove('choice-correct', 'choice-wrong'));
+            document.getElementById('c1Feedback').classList.add('hidden');
+            document.getElementById('c1NextBtn').classList.add('hidden');
+
+            // Reset Chal 2
+            document.getElementById('c2Controls').classList.remove('hidden');
+            document.getElementById('c2Feedback').classList.add('hidden');
+            document.getElementById('c2NextBtn').classList.add('hidden');
+            renderChal2();
+
+            // Reset Chal 3
+            document.getElementById('c3Blank').textContent = '___';
+            document.getElementById('c3Blank').className = 'inline-block not-italic font-mono text-base sm:text-lg px-2.5 py-0.5 mx-1 rounded-md border border-dashed border-champagne text-champagne transition-all';
+            document.querySelectorAll('#c3Options button').forEach(b => b.classList.remove('choice-correct', 'choice-wrong'));
+            document.getElementById('c3Feedback').classList.add('hidden');
+            document.getElementById('c3DoneBtn').classList.add('hidden');
+
+            switchChal(1);
+        }
+
+        function skipStraightToVideo() {
+            ensureAudio();
+            sfxTableSlam(0.85);
+            triggerFlash('rgba(255, 232, 168, 1)', 0.35, 0.25);
+
+            const s1 = document.getElementById('stage1');
+            s1.style.opacity = '0';
+            document.getElementById('preFilmBar').style.opacity = '0';
+
+            setTimeout(() => {
+                s1.classList.add('stage-hidden');
+                document.getElementById('preFilmBar').classList.add('hidden');
+                showAndStartFilm();
+            }, 340);
+        }
+
+        /* =========================================================================
+           4. STAGE 2 — AUTOMATED ENGLISH TRIBUTE COMPILER (tribute_20_11.eng)
+           ========================================================================= */
+        let s2Timers = [];
+        let s2RingRaf = null;
+        let s2Launched = false;
+
+        function clearStage2Timers() {
+            s2Timers.forEach(id => clearTimeout(id));
+            s2Timers = [];
+            if (s2RingRaf) {
+                cancelAnimationFrame(s2RingRaf);
+                s2RingRaf = null;
+            }
+        }
+
+        function enterStage2() {
+            ensureAudio();
+            sfxClick(740);
+            const s1 = document.getElementById('stage1');
+            const s2 = document.getElementById('stage2');
+
+            s1.style.opacity = '0';
+            s1.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                s1.classList.add('stage-hidden');
+                s2.classList.remove('stage-hidden');
+                s2.style.opacity = '0';
+                s2.style.transform = 'translateY(10px)';
+                void s2.offsetWidth;
+                s2.style.opacity = '1';
+                s2.style.transform = 'translateY(0)';
+                startStage2AutoType();
+            }, 380);
+        }
+
+        function highlightCode(raw) {
+            const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            if (raw.startsWith('//')) {
+                return `<span class="text-ivory/40 italic">${esc(raw)}</span>`;
+            }
+            let out = '';
+            let i = 0;
+            while (i < raw.length) {
+                if (raw[i] === '"') {
+                    let j = i + 1;
+                    while (j < raw.length && raw[j] !== '"') j++;
+                    if (j < raw.length) j++;
+                    out += `<span class="text-champagne font-semibold">${esc(raw.slice(i, j))}</span>`;
+                    i = j;
+                } else {
+                    let j = i;
+                    while (j < raw.length && raw[j] !== '"') j++;
+                    let chunk = esc(raw.slice(i, j))
+                        .replace(/\b(const)\b/g, '<span class="text-sky-300/90">$1</span>')
+                        .replace(/\b(Infinity)\b/g, '<span class="text-amberGlow font-semibold">$1</span>')
+                        .replace(/\b(launch_tribute)\b/g, '<span class="text-emerald-300 font-semibold">$1</span>')
+                        .replace(/\b(lights|impact)\b/g, '<span class="text-ivory/75">$1</span>');
+                    out += chunk;
+                    i = j;
+                }
+            }
+            return out;
+        }
+
+        function startStage2AutoType() {
+            clearStage2Timers();
+            s2Launched = false;
+
+            const codeLines = [
+                '// Compiling English Teacher\'s Day Tribute...',
+                'const gratitude = Infinity;',
+                'const beatMode = "HIGH_ENERGY_EDIT";',
+                'launch_tribute("20/11", { lights: "MAX", impact: "HEAVY" });'
+            ];
+
+            const holder = document.getElementById('ideCodeLines');
+            const runPanel = document.getElementById('runKeyPanel');
+            const runBtn = document.getElementById('runEnterBtn');
+            const ring = document.getElementById('runRingProg');
+            const ringNum = document.getElementById('runRingNum');
+
+            holder.innerHTML = '';
+            runBtn.classList.remove('run-key-slammed');
+            runPanel.style.opacity = '0';
+            runPanel.style.pointerEvents = 'none';
+            runPanel.style.transform = 'translateY(8px)';
+            ring.style.strokeDashoffset = '0';
+            ringNum.textContent = '1.5';
+
+            const rowEls = codeLines.map((_, idx) => {
+                const row = document.createElement('div');
+                row.className = 'flex items-start gap-3';
+                row.innerHTML = `<span class="text-ivory/25 select-none w-4 text-right shrink-0">${idx + 1}</span><span class="code-text break-words flex-1"></span>`;
+                holder.appendChild(row);
+                return row.querySelector('.code-text');
+            });
+
+            let delay = 220;
+            codeLines.forEach((line, idx) => {
+                const span = rowEls[idx];
+                const isLast = idx === codeLines.length - 1;
+                for (let c = 1; c <= line.length; c++) {
+                    const slice = line.slice(0, c);
+                    const done = c === line.length;
+                    s2Timers.push(setTimeout(() => {
+                        span.innerHTML = highlightCode(slice) + ((!done || isLast) ? '<span class="ide-caret"></span>' : '');
+                        if (c % 2 === 1) sfxTypeTick();
+                    }, delay));
+                    delay += 22; // Fast, snappy typing pace
+                }
+                delay += 140;
+            });
+
+            // Pop up 3D RUN / ENTER button with fast 1.5s countdown ring
+            s2Timers.push(setTimeout(() => {
+                runPanel.style.opacity = '1';
+                runPanel.style.pointerEvents = 'auto';
+                runPanel.style.transform = 'translateY(0)';
+                sfxClick(880);
+
+                const totalMs = 1500;
+                const startT = performance.now();
+                const circ = 81.68;
+
+                function stepRing(now) {
+                    if (s2Launched) return;
+                    const rem = Math.max(0, totalMs - (now - startT));
+                    const frac = 1 - rem / totalMs;
+                    ring.style.strokeDashoffset = (frac * circ).toFixed(2);
+                    ringNum.textContent = (rem / 1000).toFixed(1);
+                    if (rem <= 0) {
+                        executeStage2Launch();
+                    } else {
+                        s2RingRaf = requestAnimationFrame(stepRing);
+                    }
+                }
+                s2RingRaf = requestAnimationFrame(stepRing);
+            }, delay + 100));
+        }
+
+        function executeStage2Launch() {
+            if (s2Launched) return;
+            s2Launched = true;
+            clearStage2Timers();
+            ensureAudio();
+
+            // Slam button down + Rising sweep SFX + Flash + Table-Slam Impact!
+            const btn = document.getElementById('runEnterBtn');
+            btn.classList.add('run-key-slammed');
+            sfxRiser(0.42);
+            sfxTableSlam(1.1);
+            triggerFlash('rgba(255, 236, 178, 1)', 0.55, 0.36);
+            spawnShockwave(bgW * 0.5, bgH * 0.5, 'rgba(255, 210, 110, 0.95)', Math.max(bgW, bgH) * 0.65, 5);
+            spawnSparks(bgW * 0.5, bgH * 0.5, 42, 'gold', 1.3);
+
+            setTimeout(() => {
+                document.getElementById('preFilmBar').style.opacity = '0';
+                const s2 = document.getElementById('stage2');
+                s2.style.opacity = '0';
+                s2.style.transform = 'scale(1.06)';
+
+                setTimeout(() => {
+                    s2.classList.add('stage-hidden');
+                    document.getElementById('preFilmBar').classList.add('hidden');
+                    showAndStartFilm();
+                }, 320);
+            }, 220);
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const s2 = document.getElementById('stage2');
+                const panel = document.getElementById('runKeyPanel');
+                if (!s2.classList.contains('stage-hidden') && panel.style.opacity === '1') {
+                    executeStage2Launch();
+                }
+            }
+        });
+
+        /* =========================================================================
+           5. STAGE 3 — 51-SECOND BEAT-SYNCED 3D MOTION-GRAPHICS TIMELINE ENGINE
+           ========================================================================= */
+        const FILM_DURATION = 51.0;
+
+        const TEACHER_DATA = [
+            { letter: 'T', word: 'Thoughtful',   phrase: 'Patient in every single lesson' },
+            { letter: 'E', word: 'Empowering',   phrase: 'Giving our voices wings to fly' },
+            { letter: 'A', word: 'Articulate',   phrase: 'Turning words into pure magic' },
+            { letter: 'C', word: 'Caring',       phrase: 'Guiding us with a warm heart' },
+            { letter: 'H', word: 'Heroic',       phrase: 'Our quiet everyday inspiration' },
+            { letter: 'E', word: 'Enlightening', phrase: 'Opening doors to the whole world' },
+            { letter: 'R', word: 'Remarkable',   phrase: 'Forever remembered with gratitude' }
+        ];
+
+        let filmRunning = false;
+        let filmPaused = false;
+        let filmEnded = false;
+        let filmTime = 0;
+        let lastMusicStep = -1;
+        const firedCues = new Set();
+
+        // Cached DOM refs for rock-solid 60fps performance
+        let tCardWraps = [];
+        let tCardPivots = [];
+        let tCardSweeps = [];
+        let flowerOuterPaths = [];
+        let flowerVeinPaths = [];
+        let petalLineEls = [];
+        let lbBoxes = [];
+
+        // Row Sparkle Canvas (Underneath 7-Letter Row in Act 1)
+        const rowSparkleCanvas = document.getElementById('rowSparkleCanvas');
+        const rowSparkleCtx = rowSparkleCanvas.getContext('2d');
+        let rowTinyStars = [];
+
+        // Math Helpers
+        function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+        function lerp(a, b, t) { return a + (b - a) * t; }
+        function smoothstep(e0, e1, x) {
+            const u = clamp01((x - e0) / (e1 - e0));
+            return u * u * (3 - 2 * u);
+        }
+        function easeOutCubic(u) { return 1 - Math.pow(1 - clamp01(u), 3); }
+        function easeInOutCubic(u) {
+            u = clamp01(u);
+            return u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+        }
+        function easeOutBack(u) {
+            u = clamp01(u);
+            const c1 = 1.7;
+            const c3 = c1 + 1;
+            return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2);
+        }
+
+        function fireCueOnce(id, fn) {
+            if (firedCues.has(id)) return;
+            firedCues.add(id);
+            fn();
+        }
+
+        function formatSec(sec) {
+            const s = Math.min(Math.floor(sec), 51);
+            return `00:${s < 10 ? '0' + s : s}`;
+        }
+
+        // Build 7-Card Row DOM
+        function buildAct1Cards() {
+            const row = document.getElementById('teacherCardRow');
+            row.innerHTML = '';
+            tCardWraps = [];
+            tCardPivots = [];
+            tCardSweeps = [];
+
+            TEACHER_DATA.forEach((item) => {
+                const wrap = document.createElement('div');
+                wrap.className = 't-card-wrap';
+
+                const pivot = document.createElement('div');
+                pivot.className = 't-card-pivot';
+
+                // Front Face (Starts dark obsidian -> transforms to Sparkling Illuminated Border in Part 1B)
+                const front = document.createElement('div');
+                front.className = 't-card-face t-face-front';
+                front.innerHTML = `
+                    <div class="sparkle-border-beam"></div>
+                    <div class="card-light-sweep"></div>
+                    <span class="t-letter-glyph">${item.letter}</span>
+                `;
+
+                // Back/Open Face (Showcase in Part 1A: Letter + Descriptive English Word)
+                const open = document.createElement('div');
+                open.className = 't-card-face t-face-open';
+                open.innerHTML = `
+                    <span class="t-letter-glyph" style="color:#fff8e6; text-shadow:0 0 18px rgba(246,211,134,0.85);">${item.letter}</span>
+                    <span class="t-open-word">${item.word}</span>
+                `;
+
+                // Corner Star Glints (visible when border-lit)
+                const g1 = document.createElement('div');
+                g1.className = 'corner-glint corner-glint-tr';
+                const g2 = document.createElement('div');
+                g2.className = 'corner-glint corner-glint-bl';
+
+                pivot.appendChild(front);
+                pivot.appendChild(open);
+                wrap.appendChild(pivot);
+                wrap.appendChild(g1);
+                wrap.appendChild(g2);
+                row.appendChild(wrap);
+
+                tCardWraps.push(wrap);
+                tCardPivots.push(pivot);
+                tCardSweeps.push(front.querySelector('.card-light-sweep'));
+            });
+        }
+
+        // Build Translucent Thin-Line 6-Petal SVG Flower
+        function buildAct2Flower() {
+            const container = document.getElementById('flowerPetals');
+            container.innerHTML = '';
+            flowerOuterPaths = [];
+            flowerVeinPaths = [];
+
+            const ns = 'http://www.w3.org/2000/svg';
+            const angles = [0, 60, 120, 180, 240, 300];
+
+            angles.forEach((deg) => {
+                const g = document.createElementNS(ns, 'g');
+                g.setAttribute('transform', `translate(300 300) rotate(${deg})`);
+
+                // Outer luminous lotus petal contour
+                const outer = document.createElementNS(ns, 'path');
+                outer.setAttribute('d', 'M 0 0 C -66 -68, -78 -174, 0 -254 C 78 -174, 66 -68, 0 0');
+                outer.setAttribute('fill', 'rgba(246, 211, 134, 0.032)');
+                outer.setAttribute('stroke', 'rgba(246, 211, 134, 0.56)');
+                outer.setAttribute('stroke-width', '1.25');
+                outer.setAttribute('stroke-linecap', 'round');
+
+                // Delicate inner veins
+                const vein = document.createElementNS(ns, 'path');
+                vein.setAttribute('d', 'M 0 -30 L 0 -230 M 0 -86 Q -26 -136 -18 -184 M 0 -86 Q 26 -136 18 -184');
+                vein.setAttribute('fill', 'none');
+                vein.setAttribute('stroke', 'rgba(255, 236, 188, 0.28)');
+                vein.setAttribute('stroke-width', '0.8');
+                vein.setAttribute('stroke-linecap', 'round');
+
+                g.appendChild(outer);
+                g.appendChild(vein);
+                container.appendChild(g);
+
+                const oLen = outer.getTotalLength();
+                outer.style.strokeDasharray = oLen.toFixed(1);
+                outer.style.strokeDashoffset = oLen.toFixed(1);
+                outer.dataset.len = oLen.toFixed(1);
+
+                const vLen = vein.getTotalLength();
+                vein.style.strokeDasharray = vLen.toFixed(1);
+                vein.style.strokeDashoffset = vLen.toFixed(1);
+                vein.dataset.len = vLen.toFixed(1);
+
+                flowerOuterPaths.push(outer);
+                flowerVeinPaths.push(vein);
+            });
+
+            petalLineEls = [0, 1, 2, 3, 4, 5].map(i => document.getElementById(`pLine${i}`));
+            lbBoxes = Array.from(document.querySelectorAll('#lightboxCamRig .light-box'));
+        }
+
+        // Setup Row Sparkle Canvas Underneath the 7 Letters
+        function setupRowSparkles() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const w = Math.min(window.innerWidth * 0.96, 760);
+            const h = 54;
+            rowSparkleCanvas.width = Math.floor(w * dpr);
+            rowSparkleCanvas.height = Math.floor(h * dpr);
+            rowSparkleCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            rowTinyStars = [];
+            for (let i = 0; i < 24; i++) {
+                rowTinyStars.push({
+                    nx: 0.06 + (i / 23) * 0.88,
+                    y: 12 + Math.random() * 30,
+                    size: 2.0 + Math.random() * 3.0,
+                    phase: Math.random() * Math.PI * 2,
+                    speed: 2.8 + Math.random() * 2.5
+                });
+            }
+        }
+
+        function renderRowSparkles(t, vis, highlightIdx) {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const w = rowSparkleCanvas.width / dpr;
+            const h = rowSparkleCanvas.height / dpr;
+            rowSparkleCtx.clearRect(0, 0, w, h);
+            if (vis <= 0.01) return;
+
+            const grad = rowSparkleCtx.createRadialGradient(w * 0.5, 6, 6, w * 0.5, 6, w * 0.48);
+            grad.addColorStop(0, `rgba(246, 211, 134, ${(0.22 * vis).toFixed(3)})`);
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            rowSparkleCtx.fillStyle = grad;
+            rowSparkleCtx.fillRect(0, 0, w, h);
+
+            for (let i = 0; i < rowTinyStars.length; i++) {
+                const st = rowTinyStars[i];
+                const tw = 0.25 + 0.75 * Math.pow(0.5 + 0.5 * Math.sin(t * st.speed + st.phase), 2);
+                drawMiniStar(rowSparkleCtx, st.nx * w, st.y, st.size, '#ffe6a8', tw * 0.72 * vis);
+            }
+
+            if (highlightIdx >= 0 && highlightIdx < 7) {
+                const hx = w * (0.11 + (highlightIdx / 6) * 0.78);
+                drawMiniStar(rowSparkleCtx, hx, 18, 7.5, '#ffffff', 0.95 * vis);
+                drawMiniStar(rowSparkleCtx, hx - 18, 28, 3.8, '#f6d386', 0.75 * vis);
+                drawMiniStar(rowSparkleCtx, hx + 18, 26, 3.8, '#f6d386', 0.75 * vis);
+            }
+        }
+
+        /* =====================================================================
+           MAIN 60FPS DETERMINISTIC FILM FRAME RENDERER (t = 0.0s .. 51.0s)
+           ===================================================================== */
+        function renderFilmFrame(t) {
+            // 1. Sync 120 BPM Audio Sequencer Steps
+            const stepNow = Math.floor(t / 0.125);
+            while (lastMusicStep < stepNow && lastMusicStep < 408) {
+                lastMusicStep++;
+                triggerMusicStep(lastMusicStep);
+            }
+
+            // 2. Update Bottom Timeline HUD
+            document.getElementById('hudProgressBar').style.width = `${(clamp01(t / FILM_DURATION) * 100).toFixed(2)}%`;
+            document.getElementById('hudTimeLabel').textContent = `${formatSec(t)} / 00:51`;
+
+            const actLabelEl = document.getElementById('hudActLabel');
+            if (t < 3.0) actLabelEl.textContent = 'INTRO • BEAT DROP';
+            else if (t < 18.5) actLabelEl.textContent = 'ACT I • T-E-A-C-H-E-R';
+            else if (t < 29.0) actLabelEl.textContent = 'ACT II • BLOOMING GRATITUDE';
+            else if (t < 39.5) actLabelEl.textContent = 'ACT III • 20 / 11 LIGHTS';
+            else actLabelEl.textContent = 'FINALE • STAMP OF GRATITUDE';
+
+            const l0 = document.getElementById('layerAct0');
+            const l1 = document.getElementById('layerAct1');
+            const l2 = document.getElementById('layerAct2');
+            const l3a = document.getElementById('layerAct3A');
+            const l3b = document.getElementById('layerAct3B');
+            const l4 = document.getElementById('layerAct4');
+
+            /* -----------------------------------------------------------------
+               ACT 0 (0.0s – 3.0s): KINETIC BEAT-DROP FLASH CUTS
+               ----------------------------------------------------------------- */
+            if (t < 3.05) {
+                l0.style.opacity = t < 2.85 ? '1' : String(1 - smoothstep(2.85, 3.05, t));
+                const words = ['TO OUR', 'ENGLISH', 'TEACHER', '20 / 11'];
+                const cutIdx = Math.min(3, Math.floor(t / 0.75));
+                const localT = t - cutIdx * 0.75;
+                const txtEl = document.getElementById('kineticIntroText');
+                const subEl = document.getElementById('kineticIntroSub');
+
+                fireCueOnce(`act0_cut_${cutIdx}`, () => {
+                    txtEl.textContent = words[cutIdx];
+                    const isGold = cutIdx === 3;
+                    txtEl.style.color = isGold ? '#f6d386' : '#fffaf0';
+                    txtEl.style.textShadow = isGold
+                        ? '0 0 42px rgba(255, 190, 85, 0.9), 0 0 18px rgba(255,255,255,0.7)'
+                        : '0 0 28px rgba(246, 211, 134, 0.45)';
+                    triggerShake(isGold ? 13 : 6, isGold ? 0.24 : 0.14);
+                    triggerFlash(isGold ? 'rgba(255, 224, 140, 1)' : 'rgba(255,255,255,1)', isGold ? 0.34 : 0.14, 0.16);
+                    spawnSparks(bgW * 0.5, bgH * 0.5, isGold ? 34 : 14, 'gold', isGold ? 1.2 : 0.75);
+                    if (isGold) sfxTableSlam(0.95);
+                });
+
+                const scaleVal = lerp(1.38, 1.0, easeOutCubic(clamp01(localT / 0.28)));
+                txtEl.style.transform = `scale(${scaleVal.toFixed(3)})`;
+                subEl.style.opacity = cutIdx === 3 ? '1' : '0.45';
+            } else {
+                l0.style.opacity = '0';
+            }
+
+            /* -----------------------------------------------------------------
+               ACT 1 (3.0s – 18.5s):
+               1A (3.0–11.5s): Fly-In -> Rapid 3D Open Showcase + Phrases
+               1B (11.5–15.8s): Power Flip-Back Slam + Sparkling Illuminated Borders
+               1C (15.8–18.5s): Surge & Converge Into Blazing Central T
+               ----------------------------------------------------------------- */
+            if (t >= 2.95 && t < 18.75) {
+                const act1FadeOut = 1 - smoothstep(18.35, 18.7, t);
+                l1.style.opacity = (smoothstep(2.95, 3.2, t) * act1FadeOut).toFixed(3);
+
+                const rowEl = document.getElementById('teacherCardRow');
+                const tileW = tCardWraps[0] ? tCardWraps[0].offsetWidth : 52;
+                const rowGap = parseFloat(window.getComputedStyle(rowEl).columnGap || window.getComputedStyle(rowEl).gap) || 8;
+                const stride = tileW + rowGap;
+
+                // Determine currently showcased card in Part 1A (4.1s .. 11.3s, ~1.0s each)
+                let activeShowcaseIdx = -1;
+                if (t >= 4.1 && t < 11.45) {
+                    activeShowcaseIdx = Math.min(6, Math.floor((t - 4.1) / 1.0));
+                }
+
+                // Update Caption Panel Under the Row
+                const capPanel = document.getElementById('rowCaptionPanel');
+                if (activeShowcaseIdx >= 0) {
+                    const localCapT = (t - (4.1 + activeShowcaseIdx * 1.0));
+                    const capIn = easeOutCubic(clamp01(localCapT / 0.24));
+                    capPanel.style.opacity = capIn.toFixed(3);
+                    capPanel.style.transform = `translateY(${lerp(12, 0, capIn).toFixed(1)}px)`;
+
+                    fireCueOnce(`act1a_cap_${activeShowcaseIdx}`, () => {
+                        const d = TEACHER_DATA[activeShowcaseIdx];
+                        document.getElementById('capWord').textContent = `${d.letter} — ${d.word}`;
+                        document.getElementById('capPhrase').textContent = `“${d.phrase}”`;
+                        sfxClick(520 + activeShowcaseIdx * 55);
+                        triggerShake(3.5, 0.11);
+                    });
+                } else {
+                    capPanel.style.opacity = '0';
+                }
+
+                // Part 1B All-7 Beat Pulse at 14.2s
+                if (t >= 14.2) {
+                    fireCueOnce('act1b_all_pulse', () => {
+                        sfxTableSlam(1.0);
+                        triggerShake(14, 0.26);
+                        triggerFlash('rgba(255, 224, 145, 1)', 0.34, 0.22);
+                        spawnShockwave(bgW * 0.5, bgH * 0.48, 'rgba(255, 215, 120, 0.9)', Math.min(bgW, bgH) * 0.55, 4);
+                        spawnSparks(bgW * 0.5, bgH * 0.48, 36, 'gold', 1.15);
+                    });
+                }
+
+                // Part 1C Converge Surge (15.8s -> 16.95s) & Impact at 16.95s
+                const mergeU = easeInOutCubic(clamp01((t - 15.8) / 1.15));
+                if (t >= 16.95) {
+                    fireCueOnce('act1c_merge_impact', () => {
+                        sfxTableSlam(1.25);
+                        triggerShake(22, 0.36);
+                        triggerFlash('rgba(255, 236, 175, 1)', 0.52, 0.3);
+                        spawnShockwave(bgW * 0.5, bgH * 0.48, 'rgba(255, 220, 130, 0.98)', Math.max(bgW, bgH) * 0.55, 6);
+                        spawnSparks(bgW * 0.5, bgH * 0.48, 56, 'gold', 1.45);
+                    });
+                }
+
+                // Per-card 3D transforms
+                for (let i = 0; i < 7; i++) {
+                    // Fly-in (3.05s + i * 0.11s, dur 0.55s)
+                    const flyU = easeOutBack(clamp01((t - (3.05 + i * 0.11)) / 0.55));
+                    const startY = (i % 2 === 0 ? -90 : 90);
+                    const startZ = -340;
+                    const curY = lerp(startY, 0, clamp01(flyU));
+                    const curZ = lerp(startZ, 0, clamp01(flyU));
+                    let alpha = smoothstep(0, 0.35, clamp01((t - (3.05 + i * 0.11)) / 0.55));
+
+                    // Part 1A Open Flip (0 -> 180deg)
+                    const openStart = 4.1 + i * 1.0;
+                    const openU = easeOutBack(clamp01((t - openStart) / 0.42));
+
+                    // Part 1B Power Flip-Back Slam (180 -> 360deg, fast 0.26s cascade starting at 11.65s)
+                    const slamStart = 11.65 + i * 0.26;
+                    const slamDur = 0.24;
+                    const slamU = easeOutCubic(clamp01((t - slamStart) / slamDur));
+
+                    if (t >= slamStart) {
+                        fireCueOnce(`act1b_slam_${i}`, () => {
+                            tCardWraps[i].classList.add('border-lit');
+                            sfxCardSlam(0.85 + i * 0.07);
+                            triggerShake(7.5, 0.14);
+                            const rect = tCardWraps[i].getBoundingClientRect();
+                            spawnSparks(rect.left + rect.width * 0.5, rect.top + rect.height * 0.5, 16, 'gold', 0.85);
+                        });
+                    } else {
+                        tCardWraps[i].classList.remove('border-lit');
+                    }
+
+                    // Compute Rotation Y (0 -> 180 -> 360)
+                    let rotY = 180 * clamp01(openU);
+                    if (t >= slamStart) {
+                        rotY = 180 + 180 * slamU;
+                    }
+
+                    // Scale pop on showcase, power slam, and 14.2s unison pulse
+                    let cardScale = 1.0;
+                    if (activeShowcaseIdx === i) {
+                        cardScale = 1.08;
+                    }
+                    if (t >= slamStart && t < slamStart + 0.38) {
+                        const dtS = t - slamStart;
+                        cardScale = dtS < 0.16
+                            ? lerp(1.0, 1.24, dtS / 0.16)
+                            : lerp(1.24, 1.03, (dtS - 0.16) / 0.22);
+                    } else if (t >= slamStart + 0.38 && t < 15.8) {
+                        cardScale = 1.03;
+                    }
+
+                    // Unison pulse & light-sweep across row at 14.2s
+                    const sweepEl = tCardSweeps[i];
+                    if (t >= 14.2 && t < 15.2) {
+                        const pulseDt = t - 14.2;
+                        const env = Math.max(0, 1 - pulseDt / 0.45);
+                        cardScale += env * 0.14;
+                        const swU = clamp01((t - (14.2 + i * 0.06)) / 0.36);
+                        sweepEl.style.transform = `translateX(${lerp(-140, 160, swU).toFixed(1)}%)`;
+                    } else {
+                        sweepEl.style.transform = 'translateX(-140%)';
+                    }
+
+                    // Converge into center (index 3 slot)
+                    const curX = (3 - i) * stride * mergeU;
+                    if (t >= 16.75) {
+                        alpha *= (1 - smoothstep(16.75, 17.02, t));
+                    }
+
+                    tCardWraps[i].style.opacity = alpha.toFixed(3);
+                    tCardWraps[i].style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, ${curZ.toFixed(1)}px) scale(${cardScale.toFixed(3)})`;
+                    tCardPivots[i].style.transform = `rotateY(${rotY.toFixed(1)}deg)`;
+                }
+
+                // Blazing Central Merged T (16.92s -> 18.6s)
+                const centerT = document.getElementById('blazingCenterT');
+                if (t >= 16.9) {
+                    const tPop = easeOutBack(clamp01((t - 16.92) / 0.32));
+                    const tHandoff = 1 - smoothstep(18.35, 18.65, t);
+                    centerT.style.opacity = (clamp01(tPop) * tHandoff).toFixed(3);
+                    const sc = lerp(1.85, 1.0, clamp01(tPop)) + Math.sin(t * 12.56) * 0.03;
+                    centerT.style.transform = `translate(-50%, -50%) scale(${sc.toFixed(3)})`;
+                } else {
+                    centerT.style.opacity = '0';
+                }
+
+                // Subtle Star Sparkles Underneath Row
+                const spVis = smoothstep(3.5, 4.1, t) * (1 - smoothstep(15.8, 16.6, t));
+                renderRowSparkles(t, spVis, activeShowcaseIdx);
+            } else {
+                l1.style.opacity = '0';
+            }
+
+            /* -----------------------------------------------------------------
+               ACT 2 (18.5s – 29.0s): TRANSLUCENT LUMINOUS THIN-LINE FLOWER
+               & 6 PETAL GRATITUDE LINES -> DISSOLVE INTO SPARKS -> BLACKOUT
+               ----------------------------------------------------------------- */
+            if (t >= 18.4 && t < 29.02) {
+                const flowerOut = 1 - smoothstep(27.85, 28.95, t);
+                l2.style.opacity = (smoothstep(18.4, 18.7, t) * flowerOut).toFixed(3);
+
+                // Central T anchored cleanly inside the blossom
+                const fCoreT = document.getElementById('flowerCoreT');
+                fCoreT.style.opacity = (smoothstep(18.45, 18.75, t) * lerp(1.0, 0.72, smoothstep(19.0, 21.0, t))).toFixed(3);
+
+                // Soft Breathing Heart Aura + Slowly Rotating Filigree Ring
+                const aura = document.getElementById('flowerAura');
+                const breathe = 0.75 + 0.25 * Math.sin(t * 6.28);
+                aura.setAttribute('opacity', (smoothstep(18.5, 19.8, t) * breathe).toFixed(3));
+
+                const filigree = document.getElementById('flowerFiligreeGroup');
+                const outerRing = document.getElementById('flowerOuterRing');
+                outerRing.setAttribute('opacity', (smoothstep(19.0, 20.5, t) * 0.7).toFixed(3));
+                filigree.setAttribute('transform', `translate(300 300) rotate(${((t - 18.5) * 9).toFixed(2)})`);
+
+                // Inner Stamen Ring Draws In
+                const inRing = document.getElementById('flowerInnerRing');
+                const inP = easeOutCubic(clamp01((t - 18.5) / 0.9));
+                inRing.style.strokeDashoffset = ((1 - inP) * 239).toFixed(1);
+
+                // 6 Petals Bloom Outward in Crisp Rhythm + 6 Thank-You Lines
+                for (let i = 0; i < 6; i++) {
+                    const pStart = 18.55 + i * 0.24;
+                    const pU = easeInOutCubic(clamp01((t - pStart) / 1.35));
+                    const oEl = flowerOuterPaths[i];
+                    const oLen = parseFloat(oEl.dataset.len);
+                    oEl.style.strokeDashoffset = ((1 - pU) * oLen).toFixed(1);
+
+                    const vU = easeOutCubic(clamp01((t - (pStart + 0.45)) / 1.1));
+                    const vEl = flowerVeinPaths[i];
+                    const vLen = parseFloat(vEl.dataset.len);
+                    vEl.style.strokeDashoffset = ((1 - vU) * vLen).toFixed(1);
+
+                    // Concise Gratitude Lines Light Up Around the Flower (20.2s .. 25.6s)
+                    const lStart = 20.2 + i * 0.9;
+                    const lU = easeOutCubic(clamp01((t - lStart) / 0.55));
+                    const pLine = petalLineEls[i];
+                    pLine.style.opacity = lU.toFixed(3);
+                    const slideY = lerp(10, 0, lU);
+                    pLine.style.transform = `translate(-50%, calc(-50% + ${slideY.toFixed(1)}px))`;
+
+                    // Brief Petal Luminance Boost on Reveal
+                    const glowDist = Math.abs(t - (lStart + 0.25));
+                    const glowBoost = clamp01(1 - glowDist / 0.65);
+                    oEl.setAttribute('stroke', `rgba(255, 224, 152, ${(0.52 + glowBoost * 0.46).toFixed(3)})`);
+
+                    if (t >= lStart) {
+                        fireCueOnce(`act2_petal_${i}`, () => {
+                            const notes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+                            playPluckArp(notes[i], 0.45, 0.085);
+                        });
+                    }
+                }
+
+                // Golden Light Wave Dissolve at 27.5s -> Snap Black at 29.0s
+                if (t >= 27.55) {
+                    fireCueOnce('act2_golden_wave', () => {
+                        spawnShockwave(bgW * 0.5, bgH * 0.5, 'rgba(255, 224, 145, 0.95)', Math.max(bgW, bgH) * 0.6, 5);
+                        spawnSparks(bgW * 0.5, bgH * 0.5, 48, 'gold', 1.25);
+                        triggerFlash('rgba(255, 224, 145, 1)', 0.28, 0.28);
+                    });
+                }
+            } else {
+                l2.style.opacity = '0';
+            }
+
+            // Hard Cut to Pitch Black at 29.0s
+            if (t >= 29.0) {
+                fireCueOnce('act2_to_blackout', () => {
+                    sfxPowerDown();
+                    bgSparks = [];
+                });
+            }
+
+            /* -----------------------------------------------------------------
+               ACT 3A (29.0s – 31.6s): PITCH BLACK -> 2 ATMOSPHERIC FLICKERS OF 20/11
+               ----------------------------------------------------------------- */
+            if (t >= 29.0 && t < 31.6) {
+                l3a.style.opacity = '1';
+                const fTxt = document.getElementById('flicker2011');
+                const fHalo = document.getElementById('flickerFogHalo');
+
+                let fOp = 0;
+                let fBlur = 8;
+                let fScale = 0.97;
+
+                // Flicker 1 (29.35s – 30.05s): Weak hazy double-stutter flicker
+                if (t >= 29.35 && t <= 30.05) {
+                    fireCueOnce('act3a_flicker1', () => sfxElectricFlicker(0.65));
+                    const u = (t - 29.35) / 0.70;
+                    const stutter = Math.sin(u * Math.PI) * (0.65 + 0.35 * Math.sin(u * 26));
+                    fOp = Math.max(0, stutter) * 0.54;
+                    fBlur = lerp(9, 3.2, fOp);
+                    fScale = lerp(0.96, 1.01, fOp);
+                }
+                // Flicker 2 (30.55s – 31.32s): Sharper eerie electric bloom then snap black
+                else if (t >= 30.55 && t <= 31.32) {
+                    fireCueOnce('act3a_flicker2', () => {
+                        sfxElectricFlicker(1.0);
+                        triggerShake(4, 0.14);
+                    });
+                    const u = (t - 30.55) / 0.77;
+                    const stutter = Math.sin(u * Math.PI) * (0.72 + 0.28 * Math.cos(u * 32));
+                    fOp = Math.max(0, stutter) * 0.92;
+                    fBlur = lerp(6, 0.8, fOp);
+                    fScale = lerp(0.98, 1.04, fOp);
+                }
+
+                fTxt.style.opacity = fOp.toFixed(3);
+                fTxt.style.filter = `blur(${fBlur.toFixed(1)}px)`;
+                fTxt.style.transform = `scale(${fScale.toFixed(3)})`;
+                fTxt.style.textShadow = `0 0 ${(28 * fOp).toFixed(1)}px rgba(255, 224, 150, ${(0.8 * fOp).toFixed(3)})`;
+                fHalo.style.opacity = (fOp * 0.9).toFixed(3);
+            } else {
+                l3a.style.opacity = '0';
+            }
+
+            /* -----------------------------------------------------------------
+               ACT 3B (31.6s – 38.5s): CAMERA ZOOM + HEAVY TABLE-SLAM LIGHT BOXES
+               [ 2 ] [ 0 ] [ / ] [ 1 ] [ 1 ] -> WIDE PULL-BACK -> INSTANT BLACKOUT
+               ----------------------------------------------------------------- */
+            if (t >= 31.6 && t < 38.22) {
+                l3b.style.opacity = '1';
+
+                const rig = document.getElementById('lightboxCamRig');
+                const boxW = lbBoxes[0] ? lbBoxes[0].offsetWidth : 64;
+                const rigGap = parseFloat(window.getComputedStyle(rig).columnGap || window.getComputedStyle(rig).gap) || 10;
+                const bStride = boxW + rigGap;
+                const zoomClose = window.innerWidth < 520 ? 1.92 : 2.38;
+
+                // Camera Keyframes: Snappy zoom & pan onto each box right before BAM!
+                const camKeys = [
+                    { t: 31.60, s: 1.05,      x: 2 * bStride },
+                    { t: 31.80, s: zoomClose, x: 2 * bStride },  // Box 0 ('2') BAM at 31.80
+                    { t: 32.52, s: zoomClose, x: 2 * bStride },
+                    { t: 32.80, s: zoomClose, x: 1 * bStride },  // Box 1 ('0') BAM at 32.80
+                    { t: 33.52, s: zoomClose, x: 1 * bStride },
+                    { t: 33.80, s: zoomClose, x: 0 },            // Box 2 ('/') BAM at 33.80
+                    { t: 34.52, s: zoomClose, x: 0 },
+                    { t: 34.80, s: zoomClose, x: -1 * bStride }, // Box 3 ('1') BAM at 34.80
+                    { t: 35.52, s: zoomClose, x: -1 * bStride },
+                    { t: 35.80, s: zoomClose, x: -2 * bStride }, // Box 4 ('1') BAM at 35.80
+                    { t: 36.42, s: zoomClose, x: -2 * bStride },
+                    { t: 36.75, s: 1.05,      x: 0 },            // Fast Wide Pull-Back Climax!
+                    { t: 38.22, s: 1.0,       x: 0 }
+                ];
+
+                let cScale = 1.0;
+                let cX = 0;
+                for (let k = 0; k < camKeys.length - 1; k++) {
+                    const a = camKeys[k];
+                    const b = camKeys[k + 1];
+                    if (t >= a.t && t <= b.t) {
+                        const u = easeInOutCubic((t - a.t) / (b.t - a.t));
+                        cScale = lerp(a.s, b.s, u);
+                        cX = lerp(a.x, b.x, u);
+                        break;
+                    }
+                }
+                rig.style.transform = `scale(${cScale.toFixed(3)}) translate3d(${cX.toFixed(1)}px, 0, 0)`;
+
+                const slamTimes = [31.80, 32.80, 33.80, 34.80, 35.80];
+
+                // Trigger Heavy Table-Slam Shake + Floodlight Blast on each box!
+                slamTimes.forEach((st, idx) => {
+                    if (t >= st) {
+                        fireCueOnce(`lb_slam_${idx}`, () => {
+                            sfxTableSlam(1.12);
+                            triggerShake(21, 0.30);
+                            triggerFlash('rgba(255, 232, 165, 1)', 0.36, 0.22);
+                            spawnSparks(bgW * 0.5, bgH * 0.5, 28, 'gold', 1.15);
+                            spawnShockwave(bgW * 0.5, bgH * 0.5, 'rgba(255, 215, 120, 0.85)', Math.min(bgW, bgH) * 0.45, 4);
+                        });
+                    }
+                });
+
+                // Wide Climax Pull-Back Hit at 36.75s
+                const wideFlare = document.getElementById('wideAnamorphicFlare');
+                if (t >= 36.75) {
+                    fireCueOnce('lb_wide_climax', () => {
+                        sfxTableSlam(1.3);
+                        playFutureChord([349.23, 440.00, 523.25, 659.25, 880.00], 1.4, 0.08);
+                        triggerShake(24, 0.36);
+                        triggerFlash('rgba(255, 244, 204, 1)', 0.52, 0.3);
+                        spawnSparks(bgW * 0.5, bgH * 0.5, 55, 'gold', 1.4);
+                    });
+                    const flareFade = Math.max(0, 1 - (t - 36.75) / 1.1);
+                    wideFlare.style.opacity = (0.35 + flareFade * 0.65).toFixed(3);
+                } else {
+                    wideFlare.style.opacity = '0';
+                }
+
+                // Render Each Box's Intense Volumetric Light State
+                lbBoxes.forEach((box, idx) => {
+                    const st = slamTimes[idx];
+                    const lit = t >= st ? easeOutCubic(clamp01((t - st) / 0.08)) : 0;
+                    const flareBurst = t >= st ? Math.max(0, 1 - (t - st) / 0.38) : 0;
+
+                    box.querySelector('.lb-filament').style.opacity = lit.toFixed(3);
+                    box.querySelector('.lb-flood').style.opacity = lit.toFixed(3);
+                    box.querySelector('.lb-flare-line').style.opacity = flareBurst.toFixed(3);
+
+                    box.style.borderColor = `rgba(255, 224, 145, ${(0.12 + lit * 0.86).toFixed(3)})`;
+                    box.style.boxShadow = lit > 0.05
+                        ? `inset 0 0 32px rgba(255, 212, 118, ${(0.42 * lit).toFixed(3)}), 0 0 ${(44 * lit).toFixed(1)}px rgba(255, 198, 92, ${(0.52 * lit).toFixed(3)})`
+                        : 'inset 0 0 22px rgba(0, 0, 0, 0.96)';
+
+                    const dig = box.querySelector('.lb-digit');
+                    dig.style.color = `rgba(255, 252, 240, ${(0.06 + lit * 0.94).toFixed(3)})`;
+                    dig.style.textShadow = lit > 0.05
+                        ? `0 0 ${(26 * lit).toFixed(1)}px rgba(255, 226, 154, 0.95), 0 0 8px #ffffff`
+                        : 'none';
+                });
+            } else {
+                l3b.style.opacity = '0';
+            }
+
+            // Instant Cut to Pitch Black at 38.22s
+            if (t >= 38.22) {
+                fireCueOnce('lb_blackout_cut', () => {
+                    sfxPowerDown();
+                    bgSparks = [];
+                });
+            }
+
+            /* -----------------------------------------------------------------
+               ACT 4 (39.5s – 51.0s): HEARTFELT ENGLISH TRIBUTE + HEAVY CRIMSON
+               RED STAMP SLAM + LIGHTS-OUT ENDING
+               ----------------------------------------------------------------- */
+            if (t >= 39.5 && t < 48.62) {
+                // Instant/Fast Dramatic Lights-Out at 48.45s
+                const lightsOutFade = 1 - smoothstep(48.42, 48.60, t);
+                l4.style.opacity = (smoothstep(39.5, 39.85, t) * lightsOutFade).toFixed(3);
+
+                // Kinetic Line-by-Line Reveal
+                const lineCues = [
+                    { id: 'tLineTop', at: 39.55 },
+                    { id: 'tLine1',   at: 39.85 },
+                    { id: 'tLine2',   at: 41.15 },
+                    { id: 'tLine3',   at: 42.50 },
+                    { id: 'tLineSig', at: 43.60 }
+                ];
+
+                lineCues.forEach((lc) => {
+                    const el = document.getElementById(lc.id);
+                    const u = easeOutCubic(clamp01((t - lc.at) / 0.55));
+                    el.style.opacity = u.toFixed(3);
+                    el.style.transform = `translateY(${lerp(18, 0, u).toFixed(1)}px)`;
+                });
+
+                if (t >= 42.50) {
+                    fireCueOnce('act4_gold_line', () => {
+                        triggerShake(5, 0.14);
+                        spawnSparks(bgW * 0.5, bgH * 0.52, 22, 'gold', 0.9);
+                    });
+                }
+
+                // HEAVY CRIMSON RED STAMP SLAM (44.80s)
+                const stampEl = document.getElementById('redStampContainer');
+                const stampAura = document.getElementById('stampGlowAura');
+
+                if (t >= 44.80) {
+                    const dtS = t - 44.80;
+                    const dropDur = 0.20;
+
+                    let sScale, sRot;
+                    if (dtS < dropDur) {
+                        const u = easeOutCubic(dtS / dropDur);
+                        sScale = lerp(3.4, 0.94, u);
+                        sRot = lerp(-26, -10, u);
+                    } else if (dtS < dropDur + 0.14) {
+                        const u = easeOutCubic((dtS - dropDur) / 0.14);
+                        sScale = lerp(0.94, 1.0, u);
+                        sRot = -10;
+                    } else {
+                        sScale = 1.0;
+                        sRot = -10;
+                    }
+
+                    stampEl.style.opacity = Math.min(0.96, (dtS / 0.12)).toFixed(3);
+                    stampEl.style.transform = `scale(${sScale.toFixed(3)}) rotate(${sRot.toFixed(2)}deg)`;
+
+                    const auraPulse = dtS < dropDur ? 0 : Math.max(0.32, 1 - (dtS - dropDur) / 1.4);
+                    stampAura.style.opacity = auraPulse.toFixed(3);
+
+                    // Strongest Table-Slam Impact on Exact Landing (45.0s)
+                    if (dtS >= dropDur) {
+                        fireCueOnce('act4_red_stamp_slam', () => {
+                            sfxTableSlam(1.45);
+                            triggerShake(28, 0.45);
+                            triggerFlash('rgba(217, 30, 54, 0.9)', 0.34, 0.32);
+
+                            const rect = stampEl.getBoundingClientRect();
+                            const sx = rect.left + rect.width * 0.5;
+                            const sy = rect.top + rect.height * 0.5;
+                            spawnShockwave(sx, sy, 'rgba(217, 30, 54, 0.95)', 360, 6);
+                            spawnShockwave(sx, sy, 'rgba(246, 211, 134, 0.9)', 480, 3.5);
+                            spawnSparks(sx, sy, 62, 'crimson', 1.45);
+                        });
+                    }
+                } else {
+                    stampEl.style.opacity = '0';
+                    stampAura.style.opacity = '0';
+                }
+            } else {
+                l4.style.opacity = '0';
+            }
+
+            // LIGHTS-OUT ENDING AT 48.55s
+            if (t >= 48.55) {
+                fireCueOnce('act4_lights_out', () => {
+                    sfxPowerDown();
+                    bgSparks = [];
+                    bgShockwaves = [];
+                    document.getElementById('filmHudTop').style.opacity = '0';
+                    document.getElementById('filmHudBottom').style.opacity = '0';
+                });
+            }
+
+            // Fade in Minimalist Ending Buttons after 1.2s in Total Darkness (49.75s)
+            if (t >= 49.75) {
+                fireCueOnce('act4_show_ending_btns', () => {
+                    filmEnded = true;
+                    const endCtrl = document.getElementById('endingControls');
+                    endCtrl.style.opacity = '1';
+                    endCtrl.style.pointerEvents = 'auto';
+                });
+            }
+        }
+
+        function showAndStartFilm() {
+            const filmEl = document.getElementById('stageFilm');
+            filmEl.classList.remove('stage-hidden');
+            filmEl.style.opacity = '1';
+            startFilmPlayback();
+        }
+
+        function startFilmPlayback() {
+            firedCues.clear();
+            lastMusicStep = -1;
+            bgSparks = [];
+            bgShockwaves = [];
+            shakeTimeLeft = 0;
+            shakeIntensity = 0;
+            document.getElementById('shakeViewport').style.transform = 'translate3d(0, 0, 0)';
+
+            // Reset card border states
+            tCardWraps.forEach(w => w.classList.remove('border-lit'));
+
+            filmTime = 0;
+            filmPaused = false;
+            filmEnded = false;
+            filmRunning = true;
+
+            document.getElementById('hudPauseIcon').textContent = '⏸';
+            document.getElementById('filmHudTop').style.opacity = '1';
+            document.getElementById('filmHudBottom').style.opacity = '1';
+
+            const endCtrl = document.getElementById('endingControls');
+            endCtrl.style.opacity = '0';
+            endCtrl.style.pointerEvents = 'none';
+
+            setupRowSparkles();
+            renderFilmFrame(0);
+        }
+
+        function toggleFilmPause() {
+            if (!filmRunning || filmEnded) return;
+            filmPaused = !filmPaused;
+            document.getElementById('hudPauseIcon').textContent = filmPaused ? '▶' : '⏸';
+        }
+
+        function replayFilm() {
+            ensureAudio();
+            sfxClick(780);
+            startFilmPlayback();
+        }
+
+        function restartFromStage1() {
+            ensureAudio();
+            sfxClick(660);
+
+            filmRunning = false;
+            filmPaused = false;
+            filmEnded = false;
+            clearStage2Timers();
+
+            const filmEl = document.getElementById('stageFilm');
+            const s2 = document.getElementById('stage2');
+            const s1 = document.getElementById('stage1');
+            const bar = document.getElementById('preFilmBar');
+
+            filmEl.classList.add('stage-hidden');
+            s2.classList.add('stage-hidden');
+
+            bar.classList.remove('hidden');
+            bar.style.opacity = '1';
+
+            resetStage1State();
+            s1.classList.remove('stage-hidden');
+            s1.style.opacity = '1';
+            s1.style.transform = 'translateY(0)';
+        }
+
+        /* =========================================================================
+           6. INITIALIZATION ON WINDOW LOAD
+           ========================================================================= */
+        window.addEventListener('resize', () => {
+            resizeBgCanvas();
+            setupRowSparkles();
+            if (filmRunning) renderFilmFrame(filmTime);
+        });
+
+        window.onload = function () {
+            // Apply TEACHER_CONFIG personalization
+            document.getElementById('s1SubtitleTag').textContent = TEACHER_CONFIG.subtitle;
+            document.getElementById('tLineTop').textContent = TEACHER_CONFIG.teacherTitle;
+            document.getElementById('tLineSig').textContent = TEACHER_CONFIG.signature;
+
+            syncMuteUI();
+            resizeBgCanvas();
+            buildAct1Cards();
+            buildAct2Flower();
+            setupRowSparkles();
+
+            globalAnimLast = performance.now();
+            requestAnimationFrame(runGlobalVisualLoop);
+        };
+    </script>
+</body>
+</html>
