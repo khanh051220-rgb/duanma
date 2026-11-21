@@ -1,1 +1,573 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>20/11 — High-Impact Tribute For Our English Teacher</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Cormorant Garamond (Editorial Serif), Space Grotesk (Kinetic Display), JetBrains Mono (Code & Light-Boxes) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#05060b',
+                        champagne: '#f6d386',
+                        amberGlow: '#ffbe55',
+                        ivory: '#fffaf0',
+                        crimson: '#d91e36',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* =====================================================================
+           HIGH-IMPACT MIDNIGHT OXFORD GOLD MOTION-GRAPHICS SYSTEM
+           Palette: Obsidian (#05060b), Champagne Gold (#f6d386),
+                    Warm Amber (#ffbe55), Crisp White Glow, Crimson (#d91e36)
+           ===================================================================== */
+        :root {
+            --obsidian: #05060b;
+            --champagne: #f6d386;
+            --amber: #ffbe55;
+            --ivory: #fffaf0;
+            --crimson: #d91e36;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100dvh;
+            background-color: var(--obsidian);
+            color: var(--ivory);
+            font-family: 'Inter', system-ui, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Glassmorphic Midnight Panel for Stage 1 & Stage 2 */
+        .oxford-panel {
+            background: linear-gradient(160deg, rgba(16, 18, 28, 0.92) 0%, rgba(7, 8, 14, 0.96) 100%);
+            border: 1px solid rgba(246, 211, 134, 0.22);
+            box-shadow:
+                0 28px 70px -20px rgba(0, 0, 0, 0.92),
+                0 0 40px -15px rgba(246, 211, 134, 0.14),
+                inset 0 1px 0 rgba(255, 250, 240, 0.08);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        /* Interactive Pill / Token Buttons */
+        .choice-btn {
+            background: rgba(18, 21, 34, 0.88);
+            border: 1px solid rgba(246, 211, 134, 0.24);
+            color: var(--ivory);
+            transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: rgba(246, 211, 134, 0.78);
+            background: rgba(34, 31, 40, 0.96);
+            box-shadow: 0 0 22px rgba(246, 211, 134, 0.16);
+            transform: translateY(-2px);
+        }
+
+        .choice-btn:active:not(:disabled) {
+            transform: scale(0.96);
+        }
+
+        .choice-correct {
+            border-color: #f6d386 !important;
+            background: linear-gradient(135deg, rgba(246, 211, 134, 0.22), rgba(255, 190, 85, 0.14)) !important;
+            color: #fffdf7 !important;
+            box-shadow: 0 0 26px rgba(246, 211, 134, 0.35) !important;
+        }
+
+        .choice-wrong {
+            border-color: rgba(217, 30, 54, 0.85) !important;
+            background: rgba(217, 30, 54, 0.16) !important;
+            animation: btnShake 0.34s ease both;
+        }
+
+        @keyframes btnShake {
+            20%, 80% { transform: translateX(-4px); }
+            40%, 60% { transform: translateX(4px); }
+        }
+
+        .slot-active {
+            border-color: rgba(246, 211, 134, 0.88) !important;
+            background: rgba(246, 211, 134, 0.14) !important;
+            color: #fffaf0 !important;
+            box-shadow: 0 0 18px rgba(246, 211, 134, 0.22);
+        }
+
+        .tile-used {
+            opacity: 0.18;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        /* Luminous Gold CTA */
+        .cta-gold {
+            background: linear-gradient(135deg, #e7b863 0%, #ffeaad 50%, #ffbe55 100%);
+            color: #090a0f;
+            font-weight: 600;
+            box-shadow: 0 10px 28px -8px rgba(255, 190, 85, 0.48);
+            transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .cta-gold:hover {
+            filter: brightness(1.07);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px -8px rgba(255, 190, 85, 0.65);
+        }
+
+        .cta-gold:active {
+            transform: scale(0.97);
+        }
+
+        /* Stage View Transitions */
+        .stage-panel {
+            transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .stage-hidden {
+            display: none !important;
+            opacity: 0;
+        }
+
+        /* Stage 2: Blinking Cursor & Punchy 3D RUN / ENTER Key */
+        .ide-caret {
+            display: inline-block;
+            width: 8px;
+            height: 1.05em;
+            background: var(--champagne);
+            vertical-align: -2px;
+            margin-left: 2px;
+            box-shadow: 0 0 10px rgba(246, 211, 134, 0.8);
+            animation: blinkCaret 0.7s step-end infinite;
+        }
+
+        @keyframes blinkCaret {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .run-key-3d {
+            position: relative;
+            background: linear-gradient(180deg, #ffe299 0%, #f6c967 48%, #d69835 100%);
+            color: #0b0c12;
+            border: 1px solid #fff3cf;
+            border-radius: 14px;
+            box-shadow:
+                0 7px 0 #7a5214,
+                0 16px 36px rgba(0, 0, 0, 0.85),
+                0 0 34px rgba(255, 190, 85, 0.42),
+                inset 0 1px 0 rgba(255, 255, 255, 0.72);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.2s ease;
+        }
+
+        .run-key-3d:hover {
+            filter: brightness(1.06);
+            box-shadow:
+                0 7px 0 #7a5214,
+                0 18px 42px rgba(0, 0, 0, 0.9),
+                0 0 44px rgba(255, 190, 85, 0.62),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        }
+
+        .run-key-slammed {
+            transform: translateY(7px) scale(0.96) !important;
+            box-shadow:
+                0 0 0 #7a5214,
+                0 4px 16px rgba(0, 0, 0, 0.9),
+                0 0 54px rgba(255, 232, 168, 0.9) !important;
+        }
+
+        /* =====================================================================
+           STAGE 3: BEAT-SYNCED 3D MOTION-GRAPHICS VIDEO EDIT
+           ===================================================================== */
+        #stageFilm {
+            background-color: transparent;
+        }
+
+        #shakeViewport {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            will-change: transform;
+        }
+
+        /* Minimalist Film Control Buttons */
+        .hud-btn {
+            background: rgba(11, 13, 21, 0.56);
+            border: 1px solid rgba(246, 211, 134, 0.24);
+            color: rgba(255, 250, 240, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.22s ease;
+        }
+
+        .hud-btn:hover {
+            background: rgba(24, 26, 38, 0.85);
+            border-color: rgba(246, 211, 134, 0.65);
+            color: #ffffff;
+        }
+
+        /* ACT 0: Kinetic Intro Flash Typography */
+        #kineticIntroText {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.6rem, 13vw, 7.2rem);
+            letter-spacing: 0.12em;
+            padding-left: 0.12em;
+            line-height: 1.02;
+            text-align: center;
+            will-change: transform, opacity, filter;
+        }
+
+        /* ACT 1: 7-Card Single-Row 3D Stage (Guaranteed Single Row on 360px Mobile & PC) */
+        .teacher-3d-stage {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .teacher-row {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(4px, 1.45vw, 15px);
+            width: 100%;
+            max-width: 860px;
+            padding: 0 8px;
+            transform-style: preserve-3d;
+        }
+
+        .t-card-wrap {
+            position: relative;
+            width: clamp(42px, 11.4vw, 94px);
+            height: clamp(64px, 16.5vw, 134px);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            will-change: transform, opacity;
+            flex-shrink: 0;
+        }
+
+        .t-card-pivot {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .t-card-face {
+            position: absolute;
+            inset: 0;
+            border-radius: clamp(8px, 1.4vw, 14px);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* FRONT FACE (0deg & 360deg): Sleek Dark Obsidian -> Transforms into Locked Sparkling Gold Border in Part 1B */
+        .t-face-front {
+            background: linear-gradient(155deg, #131624 0%, #090b12 100%);
+            border: 1.5px solid rgba(246, 211, 134, 0.26);
+            box-shadow:
+                0 16px 34px -10px rgba(0, 0, 0, 0.92),
+                inset 0 1px 0 rgba(255, 250, 240, 0.14);
+        }
+
+        /* BACK FACE (180deg): Open Showcase Face (Letter + Descriptive English Word) */
+        .t-face-open {
+            transform: rotateY(180deg);
+            background: linear-gradient(160deg, rgba(35, 30, 24, 0.96) 0%, rgba(12, 13, 21, 0.98) 100%);
+            border: 1.5px solid rgba(246, 211, 134, 0.72);
+            box-shadow:
+                0 18px 38px -10px rgba(0, 0, 0, 0.92),
+                0 0 28px rgba(246, 211, 134, 0.24),
+                inset 0 1px 0 rgba(255, 250, 240, 0.35);
+        }
+
+        .t-letter-glyph {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 5.2vw, 3.55rem);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: rgba(255, 250, 240, 0.72);
+            transition: color 0.18s ease, text-shadow 0.18s ease;
+        }
+
+        .t-open-word {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: clamp(6.4px, 1.45vw, 10.5px);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #f6d386;
+            margin-top: clamp(3px, 0.7vw, 7px);
+            text-align: center;
+            padding: 0 2px;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* SPARKLING ILLUMINATED BORDER SYSTEM (Activated when card slams locked in Part 1B) */
+        .t-card-wrap.border-lit .t-face-front {
+            border-color: transparent;
+            background: linear-gradient(155deg, #241e16 0%, #0d0f18 100%);
+            box-shadow:
+                0 0 24px rgba(246, 211, 134, 0.52),
+                0 0 46px rgba(255, 190, 85, 0.26),
+                inset 0 0 18px rgba(246, 211, 134, 0.22);
+        }
+
+        .t-card-wrap.border-lit .t-face-front .t-letter-glyph {
+            background: linear-gradient(180deg, #ffffff 0%, #ffe8a8 52%, #e6a944 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 14px rgba(255, 212, 120, 0.85));
+        }
+
+        /* Rotating Light-Beam Border Layer */
+        .sparkle-border-beam {
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            padding: 2px;
+            opacity: 0;
+            pointer-events: none;
+            background: conic-gradient(
+                from 0deg,
+                rgba(246, 211, 134, 0.15) 0deg,
+                rgba(255, 255, 255, 1) 42deg,
+                rgba(255, 190, 85, 0.95) 85deg,
+                rgba(246, 211, 134, 0.12) 150deg,
+                rgba(255, 245, 210, 0.95) 225deg,
+                rgba(255, 190, 85, 0.85) 270deg,
+                rgba(246, 211, 134, 0.15) 360deg
+            );
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: spinBorderBeam 1.6s linear infinite;
+            transition: opacity 0.14s ease;
+        }
+
+        .t-card-wrap.border-lit .sparkle-border-beam {
+            opacity: 1;
+        }
+
+        @keyframes spinBorderBeam {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Corner 4-Point Sparkling Star Glints on Illuminated Cards */
+        .corner-glint {
+            position: absolute;
+            width: clamp(12px, 2.8vw, 20px);
+            height: clamp(12px, 2.8vw, 20px);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 6;
+        }
+
+        .corner-glint::before,
+        .corner-glint::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: #ffffff;
+            border-radius: 999px;
+            box-shadow: 0 0 10px 2px rgba(255, 224, 140, 0.95);
+            transform: translate(-50%, -50%);
+        }
+
+        .corner-glint::before { width: 100%; height: 2px; }
+        .corner-glint::after { width: 2px; height: 100%; }
+
+        .corner-glint-tr { top: -5px; right: -5px; }
+        .corner-glint-bl { bottom: -5px; left: -5px; }
+
+        .t-card-wrap.border-lit .corner-glint-tr {
+            animation: glintPulse 0.9s ease-in-out infinite alternate;
+        }
+        .t-card-wrap.border-lit .corner-glint-bl {
+            animation: glintPulse 0.9s ease-in-out 0.45s infinite alternate;
+        }
+
+        @keyframes glintPulse {
+            0% { opacity: 0.35; transform: scale(0.55) rotate(0deg); }
+            100% { opacity: 1; transform: scale(1.18) rotate(22deg); }
+        }
+
+        /* Light-Sweep Highlight Band Across Locked Card */
+        .card-light-sweep {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 22%, rgba(255, 250, 232, 0.78) 50%, transparent 78%);
+            transform: translateX(-140%);
+            pointer-events: none;
+        }
+
+        /* Active Descriptor Caption Under the 7-Card Row */
+        #rowCaptionPanel {
+            min-height: 70px;
+            will-change: transform, opacity;
+        }
+
+        /* Central Blazing Merged T */
+        #blazingCenterT {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(3.2rem, 11vw, 5.8rem);
+            line-height: 1;
+            background: linear-gradient(180deg, #ffffff 0%, #ffe6a3 55%, #f0ad42 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 28px rgba(255, 200, 95, 0.95));
+            will-change: transform, opacity;
+        }
+
+        /* ACT 2: Responsive Square Flower Stage (Zero Overlap on 360px Mobile & Desktop) */
+        .flower-stage-box {
+            position: relative;
+            width: min(94vw, 76vh, 620px);
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .petal-caption {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 34%;
+            text-align: center;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: clamp(11px, 2.85vw, 16.5px);
+            line-height: 1.22;
+            color: #fff8ea;
+            text-shadow:
+                0 2px 14px rgba(0, 0, 0, 0.98),
+                0 0 18px rgba(246, 211, 134, 0.42);
+            pointer-events: none;
+            will-change: opacity, transform;
+        }
+
+        /* ACT 3A: Double Atmospheric Flicker of 20/11 */
+        #flicker2011 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: clamp(3.1rem, 14vw, 7.2rem);
+            letter-spacing: 0.16em;
+            padding-left: 0.16em;
+            color: #fff6e0;
+            will-change: opacity, filter, transform;
+        }
+
+        /* ACT 3B: Architectural Glass Light-Boxes [2][0][/][1][1] + Camera Rig */
+        #lightboxCamRig {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(6px, 1.8vw, 18px);
+            transform-origin: center center;
+            will-change: transform, opacity;
+        }
+
+        .light-box {
+            position: relative;
+            width: clamp(54px, 15.2vw, 118px);
+            height: clamp(78px, 21vw, 162px);
+            border-radius: clamp(10px, 1.6vw, 16px);
+            background: #06070c;
+            border: 1.5px solid rgba(246, 211, 134, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.96);
+        }
+
+        .lb-filament {
+            position: absolute;
+            top: 0;
+            left: 16%;
+            right: 16%;
+            height: 3px;
+            border-radius: 0 0 6px 6px;
+            background: #ffffff;
+            box-shadow: 0 0 18px 6px rgba(255, 224, 140, 0.95);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .lb-flood {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 95% 80% at 50% 0%, rgba(255, 250, 232, 0.78) 0%, rgba(255, 198, 95, 0.34) 45%, transparent 88%),
+                radial-gradient(circle at 50% 54%, rgba(246, 211, 134, 0.34) 0%, transparent 70%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .lb-flare-line {
+            position: absolute;
+            top: 50%;
+            left: -20%;
+            right: -20%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 252, 238, 0.92), transparent);
+            box-shadow: 0 0 18px 4px rgba(255, 206, 110, 0.7);
+           
